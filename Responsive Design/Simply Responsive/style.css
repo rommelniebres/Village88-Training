@@ -1,0 +1,33 @@
+h1 {
+	background-color: #b3b3b3;
+	border: 1px solid black;
+	padding: 1em;
+}
+p {
+	background-color: #cccccc;
+	border: 1px solid black;
+	padding: 1em;
+}
+.col {
+	background-color: #ffff9a;
+	border: 1px solid black;
+	padding: 1em;
+}
+span {
+	font-weight: bold;
+}
+@media only screen and (max-width: 480px) {
+	.sm-0 {
+		display: none;
+	}
+}
+@media only screen and (min-width: 481px) and (max-width: 1023px) {
+	.med-0 {
+		display: none;
+	}
+}
+@media only screen and (min-width: 1024px) {
+	.lg-0 {
+		display: none;
+	}
+}

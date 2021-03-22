@@ -1,0 +1,142 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+.container {
+	width: 1000px;
+	height: 474px;
+}
+.group-period {
+	color: red;
+	height: 45px;
+	width: 950px;
+}
+.group-period-column {
+	color: red;
+	display: inline-block;
+	height: 310px;
+	width: 43px;
+}
+.group-period-row li {
+	background-color: white;
+	border: 1px solid white;
+	display: inline-block;
+	height: 40px;
+	margin: 1px 1px 1px 0px;
+	width: 40px;
+	text-align: center;
+	vertical-align: top;
+}
+.group-period-column li {
+	background-color: white;
+	border: 1px solid white;
+	display: inline-block;
+	height: 40px;
+	margin: 2px 0px 0px 0px;
+	width: 40px;
+	line-height: 30px;
+	text-align: center;
+	vertical-align: middle;
+}
+.group1 {
+	width: 90px;
+	height: 307px;
+	display: inline-block;
+	margin: 2px 0px 0px 0px;
+	vertical-align: top;
+}
+.group2 {
+	width: 466px;
+	height: 174px;
+	display: inline-block;
+	margin: 136px 0px 0px 15px;
+	vertical-align: top;
+}
+.group3 {
+	width: 278px;
+	height: 307px;
+	display: inline-block;
+	margin: 2px 0px 0px 0px;
+	vertical-align: top;
+}
+.group4 {
+	width: 654px;
+	height: 88px;
+	display: inline-block;
+	margin: 20px 0px 0px 12px;
+	vertical-align: top;
+}
+.row1 li {
+	background-color: #689bff;
+	border: 1px solid black;
+	display: inline-block;
+	height: 40px;
+	margin: 1px 1px 1px 0px;
+	width: 40px;
+}
+.row2 li {
+	background-color: #fd9a98;
+	border: 1px solid black;
+	display: inline-block;
+	height: 40px;
+	margin: 1px 1px 1px 0px;
+	width: 40px;
+}
+.row3 li {
+	background-color: #fecb00;
+	border: 1px solid black;
+	display: inline-block;
+	height: 40px;
+	margin: 1px 1px 1px 0px;
+	width: 40px;
+}
+.row4 li {
+	background-color: #1fca21;
+	border: 1px solid black;
+	display: inline-block;
+	height: 40px;
+	margin: 1px 1px 1px 0px;
+	width: 40px;
+}
+.elements {
+	color: red;
+	display: inline-block;
+	height: 75px;
+	margin: 10px 0px 20px 40px;
+	padding-top: 10px;
+	vertical-align: top;
+	width: 100px;
+}
+.elements p {
+	display: inline-block;
+	font-size: 12px;
+	margin: 15px 0px 15px 0px;
+}
+.blank,
+li.blank {
+	background-color: white;
+	border: white;
+	color: white;
+	font-size: 10px;
+}
+.bug,
+li.bug {
+	font-size: 10px;
+	margin-left: 10px;
+}
+.group-gap, li.group-gap {
+	margin-left: 15px;
+}
+.group-gap, li.group-gap-down {
+	margin-top: 10px;
+}
+span {
+	font-size: 10px;
+}
+li {
+	font-size: 10px;
+	text-align: center;
+}
+h2 {
+	color: #1c13a6
+}
