@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" onclick="jump()">
+<head>
+    <title>Flappy Bird</title>
+<style type="text/css">
+    @import url(//db.onlinewebfonts.com/c/b2e75c336df191233b3096682c9ee6be?family=PixelarRegularW01-Regular);
+    * {
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+    }
+    body {
+    overflow: hidden;
+    margin: 0;
+    }
+    #game-container {
+        width: 500px;
+        height: 650px;
+        position: relative;
+        overflow: hidden;
+    }
+    .sky {
+        background: url(bg.jpg);
+        background-size: 100%;
+        width: 500px;
+        height: 650px;
+        position: absolute;
+        overflow: hidden;
+    }
+    #bird {
+        background: url(bird.gif);
+        background-size: 190%;
+        background-position: center;
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        z-index: 1;
+    }
+    .wall {
+        background: url(wall.jpg);
+        background-position: center;
+        background-size: contain;
+        width: 75px;
+        height: 650px;
+        position: absolute;
+        overflow: hidden;
+    }
+    .gap {
+        background: url(gap.jpg);
+        background-size: 100%;
+        background-repeat: no-repeat;
+        width: 75px;
+        height: 300px;
+        position: absolute;
+        
+    }
+    #score {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        color: white;
+        font-family: "PixelarRegularW01-Regular";
+        font-size: 30px;
+        font-weight: normal;
+    }
+    #gameOver {
+        width: 500px;
+        height: 800px;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    #gameOver .backdrop {
+        background: black;
+        opacity: 0.5;
+        width: 500px;
+        height: 650px;
+    }
+    #gameOver .title, 
+    #gameOver button {
+        position: absolute;
+        z-index: 2;
+        left: calc(50% - 102px);
+        top: 30%;
+        width: 205px;
+        text-align: center;
+        color: rgb(255, 255, 74);
+        font-family: 'PixelarRegularW01-Regular';
+        font-weight: normal;
+    }
+    #gameOver .title {
+        margin-top: -65px;
+        font-size: 55px;
+    }
+    #gameOver button {
+        margin-top: 10px;
+        font-size: 24px;
+        color: black;
+        padding: 5px 25px;
+        cursor: pointer;
+        border: 0;
+    }
+</style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="sky"></div>
+        <div id="bird"></div>
+        <div id="wall"></div>  
+        <div id="gap"></div>  
+        <div id="score"></div>
+        <div id="gameOver" style="display: none;">
+            <h1 class="title">Game Over</h1>
+            <button id="button">Play Again ?</button>
+            <div class="backdrop"></div>
+        </div>
+    </div>
+    
+<script>
+    var wall = 500;
+    var bird = 300;
+    var birdX = 200;
+    var jumping = 0;
+    var counter = 0;
+    var randomGap = (Math.random()*200)+75;
+    var randomGapTop = randomGap+200;
+    var gameInterval = setInterval(gameLoop, 6);
+    
+    function moveWall() {
+        var output = '';
+        if(wall > -50) {
+            output += "<div class='wall' style='left:"+wall+"px;'></div>";
+            output += "<div class='gap' style='top:"+randomGap+"px; left:"+wall+"px;'></div>";
+            wall -= 1;
+        }
+        else {
+            wall = 500;
+            randomGap = (Math.random()*200)+75;
+            randomGapTop = randomGap+200;
+        }
+        document.getElementById('wall').innerHTML = output;
+        document.getElementById('gap').innerHTML = output;
+    }
+    
+    function displayBird() {
+		document.getElementById('bird').style['top'] = bird + "px";
+		document.getElementById('bird').style['left'] = birdX + "px";
+	}
+    
+    function gravity() {
+        if(jumping == 0) {
+            bird += 2;
+        }
+    }
+    
+    function detectCollision() {
+        if(bird>585 || ((wall-birdX < 35 && randomGap-bird > -5) && wall+70 > birdX) || ((wall-birdX < 35 && randomGapTop-bird < 30) && wall+70 > birdX)){
+            if(bird>585) {
+                new Audio('sfx_die.wav').play();
+            }
+            else {
+                new Audio('sfx_hit.wav').play();
+            }
+            clearInterval(gameInterval);
+            displayGameOver();
+        }
+        else if(wall-birdX == 20) {
+            new Audio('sfx_point.wav').play();
+            counter ++;
+        }
+    }
+    
+    function displayScore() {
+		document.getElementById('score').innerHTML = "Score: "+counter;
+    }
+
+    function displayGameOver() {
+        document.getElementById("button").onclick = function () { 
+            counter = 0;
+            wall = -49;
+            bird = 300;
+            gameInterval = setInterval(gameLoop, 8);
+            document.getElementById('gameOver').style.display ='none';
+        }
+        document.getElementById('gameOver').style.display ='';
+    }
+    
+    function reset() {
+        counter = 0;
+        wall = -49;
+        bird = 300;
+        gameInterval = setInterval(gameLoop, 6);
+    }
+
+    function jump() {
+        new Audio('sfx_wing.wav').play();
+        jumping = 1;
+        var jumpCount = 0;
+        var jumpInterval = setInterval(function() {
+            if(bird > 20 && jumpCount<19) {
+                bird -= 5;
+            }
+            if(jumpCount>10) {
+                clearInterval(jumpInterval);
+                jumping = 0;
+                jumpCount = 0;
+            }
+            jumpCount ++;
+        }, 12);
+    }
+    
+    function gameLoop() {
+        moveWall();
+        displayBird();
+        gravity();
+        displayScore();
+        detectCollision();
+    }
+    
+</script>
+</body>
+</html>

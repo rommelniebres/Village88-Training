@@ -1,0 +1,249 @@
+
+<html>
+	
+	<!--
+	Add jump (Up arrow)
+	Can Jump to block platforms
+	Drop when you go beyond the block platform legth
+	prevent character go beyond the walls
+	Bubble direction relative to player vision
+	when enemy bubbled, drop fruit-->
+
+<head>
+	<title>Bubble Bobble</title>
+	<style type="text/css">
+	body{
+		background-color:black;
+		color:white;
+		margin:0px;
+	}
+	div.row div{
+		width:16px;
+		height:16px;
+		display:inline-block;
+	}
+	div.empty{
+	}
+	div.block{
+		background:url('block.jpg');
+	}
+	div#player1{
+		background:url('player1.jpg');
+		width:32px;
+		height:32px;
+		position:absolute;
+	}
+	div.enemy1{
+		background:url('enemy1.jpg');
+		width:32px;
+		height:32px;
+		position:absolute;
+		transform: scaleX(-1);
+	}
+	div.enemy2{
+		background:url('fruit.jpg');
+		width:32px;
+		height:32px;
+		position:absolute;
+		transform: scaleX(-1);
+	}
+	div.bubble{
+		background:url('bubble.jpg');
+		width:32px;
+		height:32px;
+		position:absolute;
+		transform: scaleX(-1);
+	}
+	</style>
+</head>
+<body>
+	<div id='world'></div>
+	<div id='characters'></div>
+	<div id='bubbles'></div>
+	<div id='enemies'></div>
+	<div id='enemies2'></div>
+
+<script type="text/javascript">
+	var bubbles = [];
+	var bubbled = [];
+	var bubbledEnemies = [false, false, false];
+	var direction = "right";
+	var jumped = 0;
+	var score = 0;
+	var coming_down = false;
+	var mapping = {2: 'limit',1: 'block', 0: 'empty'};
+	var player1 = {x: 10, y: 12};
+	var enemiesStart = [{x: 6, y: 8}, {x: 12, y: 4}, {x: 18, y: 8}];
+	var enemies = [{x: 6, y: 8}, {x: 12, y: 4}, {x: 18, y: 8}];
+	var block1 = {x: 0, y: 0}
+	var world = [
+		[1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,1,0,0,0,1,1,1,1,1],
+		[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+		[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+		[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+		[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+		[1,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,1],
+		[1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1],
+		[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+		[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+		[1,0,0,0,2,0,0,0,0,2,0,0,0,0,0,0,2,0,0,0,0,2,0,0,0,1],
+		[1,0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0,1],
+		[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+		[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+		[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+		[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+	];	
+	function displayWorld(){
+		var output = '';
+		for(var i=0; i<world.length; i++){
+			output = output + "<div class='row'>";
+			for(var j=0; j<world[i].length; j++){
+				output = output + "<div class='"+mapping[world[i][j]]+"'></div>";
+			}
+			output = output + "</div>";
+		}
+		document.getElementById('world').innerHTML = output;
+	}
+	function displayPlayers(){
+		if(direction == 'left'){
+			document.getElementById('characters').innerHTML = "<div id='player1' style='transform: scaleX(-1); top:"+player1.y*16+"px; left:"+player1.x*16+"px;'></div>";
+		}
+		if(direction == 'right'){
+			document.getElementById('characters').innerHTML = "<div id='player1' style='transform: scaleX(1);top:"+player1.y*16+"px; left:"+player1.x*16+"px;'></div>";
+		}
+	}
+	function displayEnemies(){
+		var output = '';
+		for(var i=0; i<enemies.length; i++){
+			if(bubbledEnemies[i] ==  false){
+				output += "<div class='enemy1' style='top:+"+enemies[i].y*16+"px; left:"+enemies[i].x*16+"px;'></div>";
+			}
+		}
+		document.getElementById('enemies').innerHTML = output;
+	}
+	function displayBubbledEnemies(){
+		var output = '';
+		for(var i=0; i<bubbled.length; i++){
+			output += "<div class='enemy2' style='top:+"+bubbled[i].y*16+"px; left:"+bubbled[i].x*16+"px;'></div>";
+		}
+		document.getElementById('enemies2').innerHTML = output;
+	}
+	function displayBubbles(){
+		var output = '';
+		for(var i=0; i<bubbles.length; i++){
+			if(direction == 'left'){
+				output = output + "<div class='bubble' style='top:"+bubbles[i].y*16+"px; left:"+(bubbles[i].x*16-65)+"px;'></div>";
+			}
+			else{
+				output = output + "<div class='bubble' style='top:"+bubbles[i].y*16+"px; left:"+bubbles[i].x*16+"px;'></div>";
+			}
+		}
+		document.getElementById('bubbles').innerHTML = output;
+	}
+	function jumpPlayer(){
+		if(jumped == 1 && coming_down == false){
+			player1.y -= 3;
+			jumped = 2;
+		}
+		else if(jumped == 2){
+			jumped = 1;
+			coming_down = true;
+			if(world[player1.y+4][player1.x] != 0){
+			player1.y -= 2;
+        	console.log(player1.y)
+        	}
+			else{
+			player1.y += 2;
+			}
+		}
+		else if(jumped == 1 && coming_down == true){
+			player1.y += 4;
+			jumped = 0;
+			coming_down = false;
+		}
+	}
+	function gameLoop(){
+		jumpPlayer();
+		displayPlayers();
+		moveEnemies();
+		displayEnemies();
+		moveBubbles();
+		displayBubbles();
+		detectCollision();
+	}
+	function moveEnemies(){
+		for(var i=0; i<enemies.length; i++){
+			enemies[i].x += 0.5;
+			if(world[enemies[i].y+1][enemies[i].x+2] == 2){
+				enemies[i].x -= 1.5;			
+			}
+		}
+	}
+	function moveBubbles(){
+		for(var i=0; i<bubbles.length; i++){
+			if(bubbles[i].x > 23 || bubbles[i].x < 5){
+				bubbles[i] = bubbles[bubbles.length-1];
+				bubbles.pop();
+			}
+		}
+		for(var i=0; i<bubbles.length; i++){
+			if(direction == 'right'){
+				bubbles[i].x += 2;
+			}
+			if(direction == 'left'){
+				bubbles[i].x -= 2;
+			}
+		}
+	}
+	function detectCollision(){
+		for(var i=0; i<bubbles.length; i++){
+			for(var j=0; j<enemies.length; j++){
+				if(Math.abs(bubbles[i].x-enemies[j].x) < 1 && Math.abs(bubbles[i].y-enemies[j].y) < 2){
+					console.log('collided????');
+					bubbledEnemies[i] = true;
+					score += 10;
+					bubbled.push({x: enemies[j].x , y: enemies[j].y});
+				}
+				displayBubbledEnemies();
+			}
+		}
+	}
+	setInterval(gameLoop, 150);
+	displayWorld();
+	displayPlayers();
+	detectCollision()
+	document.onkeydown = function(e){
+		if(e.keyCode == 37 && world[player1.y][player1.x-1] != 1){
+			player1.x -= 1;
+			direction = 'left'
+			if(world[player1.y+2][player1.x+1] == 0 ){
+				player1.y += 4;
+				console.log(world[player1.y][player1.x])
+			}
+		}
+		else if(e.keyCode == 39 && world[player1.y][player1.x+2] != 1){
+			player1.x += 1;
+			direction = 'right'
+			if(world[player1.y+2][player1.x] == 0 )
+			{
+				player1.y += 4;
+				console.log(world[player1.y][player1.x])
+			}
+		}
+		//jumping
+		else if(e.keyCode == 38 && jumped == 0){
+			jumped = 1;
+			player1.y -= 3;
+		}
+		else if(e.keyCode == 32){
+			bubbles.push({
+				x: player1.x+2,
+				y: player1.y
+			});
+		}
+    }
+	displayPlayers();
+	displayBubbles();
+</script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<html>
+<head>
+	<title>1942 Game</title>
+
+<style type="text/css">
+	body{
+		background-color:black;
+	}
+	#container{
+		background: url('background2.jpg');
+		width:1000px;
+		height:550px;
+	}
+	#hero{
+		background: url('1942.gif');
+		background-position: -85px -180px;
+		width:28px;
+		height:28px;
+		position:absolute;
+	}
+	.enemy1{
+		background: url('1942.gif');
+		background-position: -0px -10px;
+		width:28px;
+		height:28px;
+		position:absolute;
+		
+	}
+	.enemy2{
+		background: url('1942.gif');
+		background-position: -30px -10px;
+		width:28px;
+		height:28px;
+		position:absolute;
+	}
+	.explode{
+		background: url('1942.gif');
+		background-position: -110px -30px;
+		width:30px;
+		height:30px;
+		position:absolute;
+		
+	}
+	.bullet{
+		background: url('1942.gif');
+		background-position: -185px -400px;
+		width:18px;
+		height:18px;
+		position:absolute;
+	}
+	#score{
+		position:absolute;
+		border:10px solid red;
+		top:20px;
+		left:800px;
+		background-color:white;
+		padding:10px;
+		font-size:30px;
+		font-family: Arial;	
+	}
+</style>
+</head>
+<body>
+	<div id='container'>
+		<div id='hero'></div>
+		<div id='enemies'></div>
+		<div id='explode'></div>
+		<div id='bullets'></div>	
+	</div>
+
+	<div id='score'>0</div>
+
+
+<script>
+
+	var score = 0;
+	var hero = {
+		x: 500,
+		y: 500
+	}
+
+	var bullets = [];
+	var explotions = [];
+
+	var enemies = [{x: 50, y: 50}, {x: 100, y: 100}, {x: 239, y: 98}, {x: 502, y: 150}, {x: 550, y: 50}, {x: 250, y: 50}, {x: 450, y: 50}];
+
+	function displayHero(){
+		document.getElementById('hero').style['top'] = hero.y + "px";
+		document.getElementById('hero').style['left'] = hero.x + "px";
+	}
+	function displayEnemies(){
+		var output = '';
+		for(var i=0; i<enemies.length; i++){
+			if( i % 2 != 0){
+				output += "<div class='enemy1' style='top:+"+enemies[i].y+"px; left:"+enemies[i].x+"px;'></div>";
+			}
+			else if( i % 2 == 0){
+				output += "<div class='enemy2' style='top:+"+enemies[i].y+"px; left:"+enemies[i].x+"px;'></div>";
+			}
+		}
+		document.getElementById('enemies').innerHTML = output;
+		//console.log(output);
+	}
+
+	function moveEnemies(){
+		for(var i=0; i<enemies.length; i++){
+			enemies[i].y += 5;
+
+			if(enemies[i].y > 540){
+				enemies[i].y = 0;
+				enemies[i].x = Math.random()*500;
+			}
+		}
+	}
+	function moveBullets(){
+		for(var i=0; i<bullets.length; i++){
+			bullets[i].y -= 5;
+			if(bullets[i].y<0){
+				bullets[i] = bullets[bullets.length-1];
+				bullets.pop();
+			}
+		}
+	}
+	function displayBullets(){
+		var output = '';
+		for(var i=0; i<bullets.length; i++){
+			output += "<div class='bullet' style='top:+"+bullets[i].y+"px; left:"+bullets[i].x+"px;'></div>";
+		}
+		document.getElementById('bullets').innerHTML = output;
+	}
+	function displayExplotion(){
+		var output = '';
+		for(var i=0; i<explotions.length; i++){
+			output += "<div class='explode' style='top:+"+explotions[i].y+"px; left:"+explotions[i].x+"px;'></div>";
+		}
+		document.getElementById('explode').innerHTML = output;
+	}
+	function displayScore(){
+		document.getElementById('score').innerHTML = score;
+	}
+	function gameLoop(){
+		displayHero();
+		moveEnemies();
+		displayEnemies();
+		moveBullets();
+		displayBullets();
+		detectCollision();
+		displayScore();
+		displayExplotion();
+		
+
+	}
+	
+	function detectCollision(){
+		for(var i=0; i<bullets.length; i++){
+			for(var j=0; j<enemies.length; j++){
+				if( Math.abs(bullets[i].x - enemies[j].x) < 20 
+				&& Math.abs(bullets[i].y - enemies[j].y) < 20) {
+					score += 10;
+					explotions.push({x: enemies[j].x , y: enemies[j].y});
+					enemies[j] = {x: -500, y: -500};
+					bullets[i]= {x: -500, y: -500};
+					new Audio('explotion.mp3').play()
+				}
+			}
+		}
+		for(var i=0; i<enemies.length; i++){
+			if( Math.abs(hero.x - enemies[i].x) < 10 && Math.abs(hero.y - enemies[i].y) < 10) {
+				hero = {
+					x: 500,
+					y: 500
+				}
+				score -= 500;
+			}
+		}
+	}
+	
+
+	setInterval(gameLoop, 50);
+
+	document.onkeydown = function(e){
+		if(e.keyCode == 37){
+			// Left
+			hero.x -= 20;
+		}
+		else if (e.keyCode == 39){
+			// Right
+			hero.x += 20;
+		}
+		else if (e.keyCode == 38){
+			// Top
+			hero.y -= 20;
+		}
+		else if (e.keyCode == 40){
+			// Bottom
+			hero.y += 20;
+		}
+		else if (e.keyCode == 32){
+			// SpaceBar
+			bullets.push({x: hero.x+5 , y: hero.y-15});
+			displayBullets();
+			
+		}
+	}
+</script>
+</body>
+</html>
