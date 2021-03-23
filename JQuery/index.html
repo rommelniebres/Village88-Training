@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>jQuery Functions</title>
+	<link rel="stylesheet" href="style.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			$('.click button').click(function () {
+				$('.click p').html('Hello World');
+			});
+			$('.hide button').click(function () {
+				$('.hide p').hide();
+			});
+			$('.show button').click(function () {
+				$('.show p').show();
+			});
+			$('.toggle button').click(function () {
+				$('.toggle p').toggle();
+			});
+			$('.slide .down').click(function () {
+				$('.slide h1').slideDown();
+			});
+			$('.slide .up').click(function () {
+				$('.slide h1').slideUp();
+			});
+			$('.slideToggle button').click(function () {
+				$('.slideToggle h1').slideToggle();
+			});
+			$('.fadeIn button').click(function () {
+				$('.fadeIn p').fadeIn();
+			});
+			$('.fadeOut button').click(function () {
+				$('.fadeOut p').fadeOut();
+			});
+			$('.addClass button').click(function () {
+				$('.addClass').addClass('add-background');
+			});
+			$('.before button').click(function () {
+				$('.before h1').before('I am on top of you before!');
+			});
+			$('.after button').click(function () {
+				$('.after button').after('I am after you!');
+			});
+			$('.append button').click(function () {
+				$('.append h1').append('ix');
+			});
+			$('.html button').click(function () {
+				$('.html h1').html('is not a Programming Language XD');
+			});
+			$('.attr button').click(function () {
+				$('.attr img').attr({ width: '150px', height: '150px' });
+			});
+			$('.val button').click(function () {
+				$('input:text').val('Rommel Niebres');
+			});
+			$('.text button').click(function () {
+				$('.text p').text('<h1>This is only a text not an html</h1>');
+			});
+		});
+	</script>
+</head>
+
+<body>
+	<div class="container">
+		<ul>
+			<li class="click">
+				<h1>Click</h1>
+				<button>Click</button>
+				<p>Click the button to be a master programmer</p>
+			</li>
+			<li class="hide">
+				<h1>Hide</h1>
+				<button>Hide</button>
+				<p>Quick! Hide!!!</p>
+			</li>
+			<li class="show">
+				<h1>Show</h1>
+				<button>Show</button>
+				<p class="initially-hidden">You are awesome</p>
+			</li>
+			<li class="toggle">
+				<h1>Toggle</h1>
+				<button>Toggle</button>
+				<p class="initially-hidden">peekaboo!</p>
+			</li>
+			<li class="slide">
+				<h1>SlideUp and SlideDown</h1>
+				<button class="up">SlideUp</button>
+				<button class="down">SlideDown</button>
+			</li>
+			<li class="slideToggle">
+				<h1>SlideToggle</h1>
+				<button>SlideToggle</button>
+			</li>
+			<li class="fadeIn">
+				<h1>FadeIn</h1>
+				<button>FadeIn</button>
+				<p class="initially-hidden">Hello there!</p>
+			</li>
+			<li class="fadeOut">
+				<h1>FadeOut</h1>
+				<button>FadeOut</button>
+				<p>Goodbye!</p>
+			</li>
+			<li class="addClass">
+				<h1>AddClass</h1>
+				<button>AddClass</button>
+				<p>Click the button to add class "background"</p>
+			</li>
+			<li class="before">
+				<h1>Before</h1>
+				<button>Before</button>
+			</li>
+			<li class="after">
+				<h1>After</h1>
+				<button>After</button>
+			</li>
+			<li class="append">
+				<h1>Append</h1>
+				<button>Append</button>
+			</li>
+			<li class="html">
+				<h1>HTML</h1>
+				<button>HTML</button>
+			</li>
+			<li class="attr">
+				<h1>Attr</h1>
+				<button>smol</button>
+				<img src="img.jpg" alt="small-meme" width="50" height="50">
+			</li>
+			<li class="val">
+				<h1>Val</h1>
+				<button>Set the value</button>
+				<p>Name: <input type="text" name="user"></p>
+			</li>
+			<li class="text">
+				<h1>Text</h1>
+				<button>Text</button>
+				<p>Reminder:</p>
+			</li>
+		</ul>
+	</div>
+
+</body>
+
+</html>
