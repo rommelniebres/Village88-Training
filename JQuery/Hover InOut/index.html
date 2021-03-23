@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hover In/Out</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var imageSwap = function () {
+                var newImage = $(this).attr('data-alt-src');
+                $(this).attr('data-alt-src', $(this).attr('src'));
+                $(this).attr('src', newImage);
+            }
+            $('img').hover(imageSwap, imageSwap);
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Naruto Characters</h1>
+        <img src="img/Naruto0.png" data-alt-src="img/Naruto1.png">
+        <img src="img/Sasuke0.png" data-alt-src="img/Sasuke1.png">
+        <img src="img/Sakura0.png" data-alt-src="img/Sakura1.png">
+        <img src="img/Kakashi0.png" data-alt-src="img/Kakashi1.png">
+    </div>
+</body>
+
+</html>

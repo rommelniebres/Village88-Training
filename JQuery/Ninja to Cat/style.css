@@ -1,0 +1,21 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+.container {
+	margin: auto;
+	min-height: 500px;
+	padding: 20px;
+	width: 300px;
+}
+h1 {
+	text-align: center;
+	padding: 10px;
+}
+ul li {
+	display: table;
+	margin: 0 auto;
+}
+img {
+	width: 300px;
+}
