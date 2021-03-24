@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Validations</title>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/dark-hive/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(function () {
+                $(".datepicker").datepicker();
+            });
+            $(function () {
+                $("input[type=submit]").button();
+            });
+            $("#dialog, #dialog2").hide();
+            $("#form1").submit(function () {
+                event.preventDefault();
+                var name = $('#name').val();
+                var date1 = $("#dateFrom").datepicker({ dateFormat: 'dd,MM,yyyy' }).val();
+                var date2 = $("#dateTo").datepicker({ dateFormat: 'dd,MM,yyyy' }).val();
+                if (name.length === 0) {
+                    $("#dialog").dialog();
+                }
+                else {
+                    $($("#dialog2").html('Thanks ' + name + '! Your Cruise leaves on ' + date1 + ' and returns on ' + date2 + '!')).dialog();
+                    console.log(name)
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <h1>Welcome to the Codingdojo plan-a-Cruise!</h1>
+    <form id="form1">
+        <p>From:<input type="text" class="datepicker" id="dateFrom"></p>
+        <p>To:<input type="text" class="datepicker" id="dateTo"></p>
+        <p>Name:<input type="text" id="name"></p>
+        <p><input type="submit" value="Check Dates!"></p>
+    </form>
+    <p id="dialog" title="Please input Name">Your name can't be blank!</p>
+    <p id="dialog2" title="Alert"></p>
+
+</body>
+
+</html>
