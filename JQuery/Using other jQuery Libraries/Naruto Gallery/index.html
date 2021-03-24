@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Naruto Gallery</title>
+	<link rel="stylesheet" type="text/css" href="../dist/fullpage.css" />
+	<link rel="stylesheet" type="text/css" href="examples.css" />
+	<style>
+		h1 {
+			font-size: 5em;
+			font-family: arial, helvetica;
+			color: #fff;
+			margin: 0;
+			padding: 0;
+		}
+
+		.section {
+			text-align: center;
+			overflow: hidden;
+		}
+
+		#section2 h1 {
+			position: absolute;
+			top: 20px;
+			left: 40%;
+		}
+
+		#myVideo {
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			background-size: 100% 100%;
+			background-color: black;
+			background-position: center center;
+			background-size: contain;
+			object-fit: cover;
+			z-index: 3;
+		}
+
+		#slide1 {
+			background-image: url(imgs/sasuke.jpg);
+			background-size: 100%;
+			background-repeat: no-repeat;
+		}
+
+		#slide2 {
+			background-image: url(imgs/naruto1.png);
+			background-size: contain;
+		}
+
+		#section0 .layer {
+			position: absolute;
+			z-index: 4;
+			width: 100%;
+			left: 0;
+			top: 43%;
+			-webkit-transform: translate3d(0, 0, 0);
+			-ms-transform: translate3d(0, 0, 0);
+			transform: translate3d(0, 0, 0);
+		}
+
+		#section0 {
+			overflow: hidden;
+		}
+
+		#section2 {
+			background-image: url(imgs/believe.png);
+			background-size: 100%;
+			background-repeat: no-repeat;
+		}
+
+		#infoMenu li a {
+			color: #fff;
+		}
+
+		video::-webkit-media-controls {
+			display: none !important;
+		}
+	</style>
+
+</head>
+
+<body>
+	<div id="container">
+		<div class="section " id="section0">
+			<video id="myVideo" loop muted data-autoplay>
+				<source src="imgs/naruto.mp4" type="video/mp4">
+			</video>
+			<div class="layer">
+				<h1>Rommel Niebres</h1>
+			</div>
+		</div>
+		<div class="section" id="section1">
+			<div class="slide" id="slide1">
+				<h1>Sasuke Uchiha</h1>
+			</div>
+			<div class="slide" id="slide2">
+				<h1>Naruto Uzumaki</h1>
+			</div>
+		</div>
+		<div class="section" id="section2">
+			<h1>Believe it!</h1>
+		</div>
+	</div>
+	<script type="text/javascript" src="../dist/fullpage.js"></script>
+	<script type="text/javascript" src="examples.js"></script>
+	<script type="text/javascript">
+		var myFullpage = new fullpage('#container', {
+			verticalCentered: true,
+			sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE']
+		});
+	</script>
+</body>
+
+</html>
