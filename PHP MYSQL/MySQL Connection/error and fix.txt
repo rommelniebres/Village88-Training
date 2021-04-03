@@ -1,0 +1,14 @@
+error :php_network_getaddresses: getaddrinfo failed: No such host is known.
+fix: incorrect host value or empty value for DB_HOST
+
+error : (HY000/1045): Access denied for user ''@'localhost' (using password: NO)
+fix: incorrect DB_USER value or DB_USER is empty.
+
+error :(HY000/1045): Access denied for user 'root'@'localhost' (using password: YES)
+fix: incorrect DB_USER value or DB_USER is empty.
+
+error :  (HY000/1049): Unknown database 'codingdojo'
+fix: incorrect database schema value or empty value for DB_DATABASE(if queried).
+
+error : Use of undefined constant DB_DB - assumed 'DB_DB' (this will throw an Error in a future version of PHP)
+fix: incorrect mysqli database value(parameter) value.

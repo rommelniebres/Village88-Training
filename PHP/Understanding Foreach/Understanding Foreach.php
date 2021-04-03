@@ -2,8 +2,7 @@
 <?php
 //1
 $x = array(1,3,5,7);
-foreach ($x as $key => $value)
-{
+foreach ($x as $key => $value) {
     echo $key . " - " . $value ."<br />";
 }
 
@@ -17,8 +16,7 @@ Prediciton
 
 //2
 $x = array(1,3,5,7);
-foreach ($x as $value)
-{
+foreach ($x as $value) {
     echo $value ."<br />";
 }
 /*
@@ -31,8 +29,7 @@ Prediciton
 
 //3
 $x = array("hi" => "Dojo", "awesome" => "game");
-foreach ($x as $key => $value)
-{
+foreach ($x as $key => $value) {
     echo $key . " - " . $value ."<br />";
 }
 
@@ -44,8 +41,7 @@ awesome - game
 
 //4
 $x = array("hi" => "Dojo", "awesome" => "game");
-foreach ($x as $key => $value)
-{
+foreach ($x as $key => $value) {
     echo $value ."<br />";
 }
 
@@ -57,8 +53,7 @@ game
 
 //5
 $x = array("hi" => "Dojo", "awesome" => "game");
-foreach ($x as $key => $value)
-{
+foreach ($x as $key => $value) {
     echo $key ."<br />";
 }
 
@@ -70,8 +65,7 @@ awesome
 
 //6
 $x = array( array(1,3,5), array(2,4,6), array(3,6,9) );
-foreach ($x as $key => $value)
-{
+foreach ($x as $key => $value) {
     echo "Key is {$key}<br />";
     echo "var_dumping value";
     var_dump($value);
@@ -103,8 +97,7 @@ array (size=3)
 
 //7
 $x = array( array(1,3,5), array(2,4,6), array(3,6,9) );
-foreach ($x as $value)
-{
+foreach ($x as $value) {
     echo "var_dumping value";
     var_dump($value);
 }
@@ -132,11 +125,9 @@ array (size=3)
 
 //8
 $x = array( array("hi"=>"Dojo", "game"=>"awesome"), array("dude"=>"fun", "play"=>"what?"), array("no"=>"way", "i am"=>"confused?") );
-foreach ($x as $key => $value)
-{
+foreach ($x as $key => $value) {
     echo "key is {$key}<br />";
-    foreach ($value as $key2=>$value2)
-    {
+    foreach ($value as $key2=>$value2) {
         echo $key2 ." - " . $value2."<br />";
     }
 }
@@ -156,10 +147,8 @@ i am - confused?
 
 //9
 $x = array( array("hi"=>"Dojo", "game"=>"awesome"), array("dude"=>"fun", "play"=>"what?"), array("no"=>"way", "i am"=>"confused?") );
-foreach ($x as $y)
-{
-    foreach ($y as $key=>$value)
-    {
+foreach ($x as $y) {
+    foreach ($y as $key=>$value) {
         echo $key ." - " . $value."<br />";
     }
 }

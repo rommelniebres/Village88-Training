@@ -1,13 +1,12 @@
 <?php
-
 function get_max_and_min($array) {
     $max = $array[0];
     $min = $array[0];
-    foreach ($array as $value){
+    foreach ($array as $value) {
         if ($value > $max){
             $max = $value;
         }
-        elseif ($value < $min){
+        else if ($value < $min) {
             $min = $value;
         }
     }

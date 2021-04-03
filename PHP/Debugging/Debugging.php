@@ -9,8 +9,7 @@ $error = "";
 if (isset($error)) {
     echo "Is an empty string NULL? Also, think of an operator that we can use to return a true value to a variable that is not set yet!!!!!";
 }
-if(isset($array))
-{
-var_dump($array);
+if(isset($array)) {
+    var_dump($array);
 }
 ?>
