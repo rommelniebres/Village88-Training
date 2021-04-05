@@ -7,66 +7,49 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QuotingDojo</title>
-    <style>
-    body {
-        background-color: #222222;
-        color: white;
-        text-align: center;
+    <title>Login and Registration</title>
+    <style type="text/css">
+    * {
+        font-family: sans-serif;
     }
-    form {
-        background-color: #555555;
-        display: inline-block;
-        padding: 20px;
-        margin-bottom: 20px;
+    .error {
+        color: red;
     }
-    form input {
-        display: block;
-        margin-bottom: 5px;
-        padding: 10px;
-        width: 300px;
+    .success {
+        color: green;
     }
-    input[type=submit] {
-        background-color: #767676;
-        color: white;
-        margin: 10px 10px 15px 13px;
-    }
-    a {
-        border: 2px solid gray;
-        padding: 5px 100px 5px 100px;
-        background-color: #767676;
-        color: white;
-        text-decoration: none;
-    }
-    .errors {
-        border: 2px solid red;
-        background-color: #555555;
-        padding: 20px;
-        min-height: 30px;
-        margin: auto;
-        width: 300px;
-    }
-
+    
     </style>
 </head>
 <body>
-    <h2>Welcome to Quoting Dojo</h2>
-    <form action="process.php" method="post">
-        <h3>Your Name:</h3>
-        <input type="text" name="name" placeholder="Name">
-        <h3>Your Quote:</h3>
-        <textarea name="quote" id="" cols="40" rows="10" placeholder="Quote"></textarea>
-        <input type="submit" value="Add my quote!">
-        <a href="main.php">Skip to quotes!</a>
-    </form>
-    <div class="errors">
     <?php
         if(isset($_SESSION['errors'])) {
-            foreach ($_SESSION['errors'] as $error) {
-                echo "{$error}<br>";
+            foreach($_SESSION['errors'] as $error) {
+                echo "<p class='error'>{$error} </p>";
             }
+            unset($_SESSION['errors']);
+        }
+        if(isset($_SESSION['success_message'])) {
+            echo "<p class='success'>{$_SESSION['success_message']} </p>";
+            unset($_SESSION['success_message']);
         }
     ?>
-    </div>
+    <h2>Register</h2>
+    <form action="process.php" method='post'>
+        <input type="hidden" name='action' value='register'>
+        First name: <input type="text" name='first_name'><br>
+        Last name: <input type="text" name='last_name'><br>
+        Email address: <input type="text" name='email'><br>
+        Password: <input type="password" name='password'><br>
+        Confirm Password: <input type="password" name='confirm_password'><br>
+        <input type="submit" value='register'>
+    </form>
+    <h2>Login</h2>
+    <form action="process.php" method='post'>
+        <input type="hidden" name='action' value='login'>
+        Email address: <input type="text" name='email'><br>
+        Password: <input type="password" name='password'><br>
+        <input type="submit" value='login'>
+    </form>
 </body>
 </html>
