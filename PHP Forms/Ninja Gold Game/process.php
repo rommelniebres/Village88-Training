@@ -27,7 +27,14 @@ else {
     if ($building == 'casino') {
         $casino = rand(-50, 50);
         $_SESSION['gold'] += $casino;
-        $_SESSION['activities'][] = "You have entered a {$building} and earned {$casino} golds. ({$date})";
+        if ($casino < 0) {
+            $casino = abs($casino);
+            $_SESSION['activities'][] = "You have entered a {$building} and lost {$casino} golds... Ouch.. ({$date})";
+        }
+        else {
+            $_SESSION['activities'][] = "You have entered a {$building} and earned {$casino} golds. ({$date})";
+        }
+        
     }
 }
     header('Location: index.php')

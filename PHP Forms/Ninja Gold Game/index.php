@@ -68,6 +68,7 @@ session_start();
             echo $activity. "\n";
         }
     }
+    
 ?>
     </textarea> 
 </body>
