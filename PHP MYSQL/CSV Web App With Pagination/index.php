@@ -6,8 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSV Web App</title>
     <style>
+        body {
+            width: 100%;
+        }
         form {
             background-color: #ebebd0;
+            margin-bottom: 20px;
             padding: 20px;
             width: 100%;
         }
@@ -20,8 +24,8 @@
         table {
             background-color: #ebebd0;
             border-collapse: collapse;
-            font-size:20px;
             margin-top: 20px;
+            width: 100%;
         }
             table th{
                 background-color: #779455;
@@ -31,14 +35,22 @@
             table tr{
                 background-color: #779455;
                 border: 2px solid gray;
-                width: 900px;
             }
             table tr td{
                 background-color: #ffffff;
                 border: 2px solid gray;
-                min-width: 150px;
+                min-width: 100px;
                 padding: 20px 20px;
                 text-align: center;
+            }
+            a{
+                background-color: #779455;
+                border: 1px solid black;
+                color: white;
+                font-size: 20px;
+                margin-left: 10px;
+                padding:15px;
+                text-decoration:none;
             }
     </style>
 </head>
@@ -50,41 +62,44 @@
         <input type="hidden" name='page' value='1'>
     </form>
     <table>
-    <tr>
+        <tr>
 <?php
     ini_set('auto_detect_line_endings',TRUE);
     $count = 0;
     $page = 1;
-    if(isset($_GET['submit'])) {
+    if(isset($_GET['submit']) && !empty($_GET['filename'])) {
         $handle = fopen($_GET['filename'], "r");
         $headers = fgetcsv($handle, 1000, ",");
         foreach($headers as $header) { ?>
             <th><?= strtoupper($header) ?></th>
-<?php   } 
-    } ?>
-    </tr>
-<?php   
-    $data = array();
-    while (($headers2 = fgetcsv($handle, 1000, ",")) !== FALSE) {
-        $count++;
-        $data[$page][] = $headers2;
-        if($count % 50 == 0) {
-            $page++;
-        }
-    }
-    for ($i=1; $i<= count($data); $i++) { ?>
-        <a href="http://localhost/?filename=<?=$_GET['filename']?>&submit=Upload-CSV&page=<?=$i?>"><?=$i?></a>
-        <?php    }
-    $pageNumber = (intval($_GET['page']));
-    if(isset($_GET['page']) && intval($_GET['page']) > 0) {
-        foreach($data[$pageNumber] as $key) {  
-            foreach($key as $value) { ?>
-                <td><?= $value ?></td>
-<?php       }?>
+<?php   }  ?>
         </tr>
-<?php   }
-    }
-fclose($handle);
-?>  </table>
+<?php
+        $data = array();
+        while (($headers2 = fgetcsv($handle, 1000, ",")) !== FALSE) {
+            $count++;
+            $data[$page][] = $headers2;
+            if($count % 50 == 0) {
+                $page++;
+            }
+        }
+        for ($i=1; $i<= count($data); $i++) { ?>
+            <a href="http://localhost/?filename=<?=$_GET['filename']?>&submit=Upload-CSV&page=<?=$i?>"><?=$i?></a>
+<?php   } ?>
+        <tr>
+<?php
+        $pageNumber = (intval($_GET['page']));
+        if(isset($_GET['page']) && intval($_GET['page']) > 0) {
+            foreach($data[$pageNumber] as $key) {  
+                foreach($key as $value) { ?>
+                    <td><?= $value ?></td>
+<?php           }?>
+        </tr>
+<?php       }
+        }
+        fclose($handle); 
+    }  
+    ?>  
+    </table>
 </body>
 </html>
