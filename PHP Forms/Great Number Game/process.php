@@ -14,4 +14,5 @@ session_start();
     }   
     $_SESSION['guess'] = $result;
     header('Location: index.php');
+    
 ?>

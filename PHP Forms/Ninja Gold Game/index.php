@@ -8,27 +8,8 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Make Money!!!</title>
-    <style>
-        body {
-        text-align: center;
-        background-color: #222222;
-        color: white;
-        }
-        form {
-            padding: 20px;
-            background-color: #555555;
-            display: inline-block;
-        }
-        input[type=submit] {
-            background-color: #767676;
-            color: white;
-        }
-        textarea {
-            width: 600px;
-            padding: 10px;
-            text-align: left;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    
 </head>
 <body>
     <h2>Your Gold:

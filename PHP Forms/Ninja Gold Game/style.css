@@ -1,0 +1,19 @@
+body {
+	text-align: center;
+	background-color: #222222;
+	color: white;
+}
+form {
+	padding: 20px;
+	background-color: #555555;
+	display: inline-block;
+}
+input[type='submit'] {
+	background-color: #767676;
+	color: white;
+}
+textarea {
+	width: 600px;
+	padding: 10px;
+	text-align: left;
+}

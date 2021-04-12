@@ -5,32 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Survey Form</title>
-    <style>
-        body {
-            background-color: #222222;
-            color: white;
-            text-align: center;
-        }
-        form {
-            background-color: #555555;
-            display: inline-block;
-            padding: 20px;
-            text-align: left;
-        }
-        input[type=submit] {
-            background-color: #767676;
-            color: white;
-        }
-        textarea {
-            display: block;
-            padding: 10px;
-            text-align: left;
-            width: 300px;
-            margin-bottom: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
+<h1>Survey Form</h1>
 <form action='result.php' method='post'>
     <p>Your Name:<input type='text' name='name'>
     <p>Dojo Location:
