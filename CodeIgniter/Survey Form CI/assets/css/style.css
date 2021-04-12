@@ -1,0 +1,47 @@
+body {
+	background-color: #222222;
+	color: white;
+	font-size: 20px;
+	text-align: center;
+}
+.thanks {
+	background-color: #b6d7a8;
+	padding: 20px;
+	width: 700px;
+	margin: auto;
+}
+form {
+	background-color: #555555;
+	display: inline-block;
+	padding: 20px 40px;
+	text-align: left;
+}
+input[type='text'] {
+	background-color: white;
+	margin-left: 40px;
+	padding: 5px;
+}
+select {
+	background-color: white;
+	padding: 5px;
+	margin-left: 30px;
+}
+input[type='submit'] {
+	background-color: #767676;
+	color: white;
+	margin-left: 250px;
+}
+textarea {
+	display: block;
+	margin-bottom: 10px;
+	min-height: 100px;
+	padding: 10px;
+	text-align: left;
+	width: 300px;
+}
+a {
+	background-color: #777777;
+	color: white;
+	padding: 10px;
+	text-decoration: none;
+}
