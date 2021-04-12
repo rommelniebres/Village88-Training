@@ -1,0 +1,35 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+.container {
+	background-image: url('/img/bg.jpg');
+	background-repeat: no-repeat;
+	background-size: 100%;
+	color: white;
+	min-height: 950px;
+	text-align: center;
+	width: 100%;
+}
+h1 {
+	font-size: 50px;
+	margin-bottom: 50px;
+	padding-top: 20px;
+}
+button {
+	background-color: #4bc3b5;
+	color: black;
+	font-size: 20px;
+	font-weight: bold;
+	height: 100px;
+	margin: 20px 10px 20px 10px;
+	width: 100px;
+}
+.dealer-hand img,
+.player-hand img {
+	width: 100px;
+}
+.score {
+	font-size: 40px;
+	text-shadow: -1px -1px 0 #000;
+}
