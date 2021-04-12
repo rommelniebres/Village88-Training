@@ -5,54 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSV Web App</title>
-    <style>
-        body {
-            width: 100%;
-        }
-        form {
-            background-color: #ebebd0;
-            margin-bottom: 20px;
-            padding: 20px;
-            width: 100%;
-        }
-            form label {
-                font-size: 30px;
-            }
-            form .btn{
-                padding: 10px;
-            }
-        table {
-            background-color: #ebebd0;
-            border-collapse: collapse;
-            margin-top: 20px;
-            width: 100%;
-        }
-            table th{
-                background-color: #779455;
-                color: white;
-                padding: 20px 20px;
-            }
-            table tr{
-                background-color: #779455;
-                border: 2px solid gray;
-            }
-            table tr td{
-                background-color: #ffffff;
-                border: 2px solid gray;
-                min-width: 100px;
-                padding: 20px 20px;
-                text-align: center;
-            }
-            a{
-                background-color: #779455;
-                border: 1px solid black;
-                color: white;
-                font-size: 20px;
-                margin-left: 10px;
-                padding:15px;
-                text-decoration:none;
-            }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <form action='' method='GET' enctype = "multipart/form-data" >

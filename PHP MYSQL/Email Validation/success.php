@@ -1,26 +1,16 @@
-<style>
-    body {
-        background-color: #222222;
-        color: white;
-        text-align: center;
-    }
-    h3 {
-        background-color: #555555;
-        display: inline-block;
-        padding: 20px;
-        margin-top: 20px;
-    }
-    .emails {
-        border: 2px solid green;
-        background-color: #555555;
-        padding: 20px;
-        min-height: 30px;
-        margin: auto;
-        width: 800px;
-        color: white;
-        font-size: 15px
-    }
-    </style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+</body>
+</html>
 <?php
     require 'new-connection.php';
     session_start();

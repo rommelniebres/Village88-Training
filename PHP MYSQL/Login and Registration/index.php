@@ -8,18 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login and Registration</title>
-    <style type="text/css">
-    * {
-        font-family: sans-serif;
-    }
-    .error {
-        color: red;
-    }
-    .success {
-        color: green;
-    }
+    <link rel="stylesheet" href="style.css">
     
-    </style>
 </head>
 <body>
     <?php

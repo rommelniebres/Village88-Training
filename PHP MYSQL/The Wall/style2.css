@@ -1,0 +1,117 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+body * {
+	font-family: sans-serif;
+	color: white;
+}
+#container {
+	width: 100%;
+	min-height: 1000px;
+	background-color: #1a4645;
+}
+header {
+	width: 100%;
+	padding: 20px;
+	background-color: #051821;
+}
+header h1,
+p,
+a {
+	display: inline-block;
+}
+header h1 {
+	width: 85%;
+}
+header a {
+	margin-left: 20px;
+}
+.post-message {
+	padding: 50px;
+}
+.post-message textarea {
+	color: #051821;
+	font-size: 20px;
+	min-height: 200px;
+	width: 100%;
+}
+input[type='submit'] {
+	background-color: white;
+	border-radius: 5px;
+	color: #051821;
+	display: block;
+	font-size: 20px;
+	font-weight: bold;
+	margin-left: 90%;
+	margin-top: 10px;
+	padding: 5px;
+}
+.error {
+	background-color: #266867;
+	border-radius: 8px;
+	color: #f58800;
+	font-size: 20px;
+	margin-left: 45%;
+	padding: 10px;
+	text-align: center;
+}
+.success {
+	background-color: #f58800;
+	border-radius: 8px;
+	color: #266867;
+	font-size: 20px;
+	margin-left: 45%;
+	padding: 10px;
+	text-align: center;
+}
+.show-message {
+	padding: 0px 50px 50px 50px;
+	color: white;
+}
+.show-message h3 {
+	border-top: 5px solid #f58800;
+	display: block;
+	padding: 20px 40px 0px 40px;
+	margin-bottom: 20px;
+}
+.show-message p {
+	display: block;
+	font-size: 25px;
+	margin-bottom: 20px;
+	padding: 0px 40px 20px 60px;
+}
+.show-comment {
+	padding: 0px 50px 50px 50px;
+	color: white;
+}
+.show-comment textarea {
+	color: #051821;
+	font-size: 15px;
+	height: 100px;
+	padding: 20px;
+	width: 100%;
+}
+.show-comment p {
+	display: block;
+	font-size: 20px;
+	margin-bottom: 20px;
+	padding: 0px 40px 20px 60px;
+}
+.show-comment h3 {
+	border-top: 5px solid #f8bc24;
+	display: block;
+	padding: 20px 40px 0px 40px;
+	margin-bottom: 20px;
+}
+.delete-btn input[type='submit'] {
+	background-color: red;
+	border-radius: 5px;
+	color: white;
+	display: block;
+	font-size: 20px;
+	font-weight: bold;
+	margin-left: 90%;
+	margin-top: 10px;
+	padding: 5px;
+}

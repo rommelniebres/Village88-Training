@@ -1,0 +1,47 @@
+body {
+	background-color: #222222;
+	color: white;
+	margin: auto;
+	text-align: center;
+	width: 500px;
+}
+form {
+	background-color: #555555;
+	display: inline-block;
+	margin-top: 20px;
+	padding: 20px;
+}
+form input {
+	display: block;
+	margin-bottom: 5px;
+	padding: 10px;
+	width: 300px;
+}
+input[type='submit'] {
+	background-color: #767676;
+	color: white;
+	margin-left: 12px;
+}
+.errors {
+	border: 2px solid red;
+	background-color: #555555;
+	padding: 20px;
+	min-height: 30px;
+	margin: auto;
+	width: 300px;
+}
+h3 {
+	background-color: #555555;
+	display: inline-block;
+	padding: 20px;
+}
+.emails {
+	background-color: #555555;
+	border: 2px solid green;
+	color: white;
+	font-size: 15px;
+	margin: auto;
+	min-height: 30px;
+	padding: 20px;
+	width: 100%;
+}
