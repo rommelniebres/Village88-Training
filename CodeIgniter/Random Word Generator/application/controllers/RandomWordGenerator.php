@@ -3,9 +3,8 @@ class RandomWordGenerator extends CI_Controller {
     public function main()
 	{
 		$this->load->view('index');
-        // $counter = $this->session->unset_userdata('counter');
-        if(!isset($counter)){
-            $this->counter();
+        if($counter = $this->session->userdata('counter') == NULL) {
+            $this->session->set_userdata('counter', 1);
         }
 	}
 
@@ -14,7 +13,8 @@ class RandomWordGenerator extends CI_Controller {
         $this->load->helper('string');
         $random = strtoupper(random_string('alnum', 14));
         $this->session->set_userdata('random', $random);
-        $this->main();
+        $this->counter();
+        redirect('/');
     }
 
     public function counter()
