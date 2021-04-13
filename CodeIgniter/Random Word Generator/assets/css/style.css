@@ -1,0 +1,14 @@
+body * {
+	text-align: center;
+	margin: auto;
+	font-size: 40px;
+}
+h2 {
+	border: 2px solid black;
+	width: 500px;
+	padding: 20px;
+	margin: 20px auto;
+}
+input {
+	border: 5px solid green;
+}
