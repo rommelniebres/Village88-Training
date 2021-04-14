@@ -1,0 +1,47 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	text-align: center;
+}
+h1 {
+	margin: 20px 20px 20px 5%;
+}
+form {
+	border: 2px solid black;
+	display: inline-block;
+	height: 150px;
+	margin-right: 20px;
+	padding: 10px;
+	text-align: center;
+	vertical-align: top;
+	width: 170px;
+}
+form h2 {
+	margin-bottom: 10px;
+}
+form input {
+	margin-top: 20px;
+	padding: 10px;
+	font-weight: bold;
+	background-color: white;
+	box-shadow: 2px 2px #2c2a2a;
+}
+.activities {
+	border: 2px solid black;
+	display: block;
+	font-size: 20px;
+	height: 200px;
+	margin: 20px auto;
+	overflow: scroll;
+	padding: 40px;
+	text-align: left;
+	width: 800px;
+}
+.good {
+	color: green;
+}
+.bad {
+	color: red;
+}
