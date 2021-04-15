@@ -1,0 +1,109 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	padding: 50px;
+}
+
+form {
+	padding: 10px;
+	width: 500px;
+}
+form #error {
+	color: red;
+	display: block;
+}
+form #success {
+	color: green;
+	display: block;
+}
+form label {
+	display: inline-block;
+	font-size: 20px;
+	text-align: left;
+	vertical-align: top;
+	width: 100px;
+}
+form input {
+	margin-left: 3px;
+	width: 300px;
+	margin-bottom: 10px;
+	display: inline-block;
+	padding: 5px;
+}
+form input[type='submit'] {
+	background-color: rgb(18, 207, 18);
+	box-shadow: 2px 2px black;
+	color: white;
+	display: block;
+	font-weight: bold;
+	margin-bottom: 10px;
+	margin-left: 360px;
+	padding: 5px;
+	width: 50px;
+}
+form textarea {
+	padding: 10px;
+	resize: none;
+	width: 290px;
+	height: 100px;
+	margin-left: 0;
+}
+#courses {
+	border: 2px solid gray;
+}
+#courses {
+	font-family: Arial, Helvetica, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+#courses td,
+#courses th {
+	border: 1px solid #ddd;
+	padding: 8px;
+}
+
+#courses tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+#courses tr:hover {
+	background-color: #ddd;
+}
+
+#courses th {
+	background-color: #4caf50;
+	color: white;
+	padding-bottom: 12px;
+	padding-top: 12px;
+	text-align: left;
+}
+#destroy {
+	text-align: center;
+}
+#destroy p {
+	font-size: 25px;
+	margin-left: 80px;
+	padding: 10px;
+	text-align: left;
+}
+#destroy a {
+	background-color: rgb(197, 191, 191);
+	box-shadow: 2px 2px black;
+	color: black;
+	display: inline-block;
+	font-size: 20px;
+	margin-right: 20px;
+	margin-top: 20px;
+	padding: 10px;
+	text-decoration: none;
+}
+#destroy #warning {
+	background-color: rgb(218, 0, 0);
+	color: white;
+}
+#destroy a:visited {
+	color: black;
+}
