@@ -1,0 +1,90 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	font-size: 20px;
+	padding: 20px;
+}
+h1 {
+	display: inline-block;
+	margin-right: 60%;
+}
+h2 {
+	display: block;
+	text-align: center;
+}
+#cart {
+	font-size: 30px;
+	text-decoration: none;
+	color: steelblue;
+}
+.order {
+	background-color: #008cba;
+	box-shadow: 2px 2px black;
+	color: white;
+	font-size: 20px;
+	margin-left: 20px;
+	padding: 5px 10px;
+	text-decoration: none;
+}
+#items {
+	font-family: Arial, Helvetica, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+#items td,
+#items th {
+	border: 1px solid #ddd;
+	padding: 8px;
+}
+
+#items tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+#items tr:hover {
+	background-color: #ddd;
+}
+
+#items th {
+	padding-top: 12px;
+	padding-bottom: 12px;
+	text-align: left;
+	background-color: #4caf50;
+	color: white;
+}
+.list input[type='number'] {
+	padding: 10px;
+	width: 40px;
+}
+.list input[type='submit'] {
+	background-color: #4caf50;
+	box-shadow: 2px 2px black;
+	color: white;
+	font-size: 20px;
+	padding: 5px 10px;
+}
+h2 {
+	margin-top: 50px;
+}
+.billing {
+	width: 300px;
+}
+.billing label {
+	margin-right: 40px;
+}
+.billing input {
+	margin-top: 5px;
+	padding: 5px;
+}
+#delete {
+	background-color: #f44336;
+	box-shadow: 2px 2px black;
+	color: white;
+	font-size: 20px;
+	margin-left: 20px;
+	padding: 5px 10px;
+	text-decoration: none;
+}
