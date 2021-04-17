@@ -43,5 +43,6 @@
         <label for="card">Card #: </label><input type="text" name="card">
         <input class="order" type="submit" value="Order">
     </form>
+	<a id="back" href="/products">Go back</a>
 </body>
 </html>

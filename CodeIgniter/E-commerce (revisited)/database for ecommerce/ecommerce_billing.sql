@@ -31,7 +31,7 @@ CREATE TABLE `billing` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `billing` (
 
 LOCK TABLES `billing` WRITE;
 /*!40000 ALTER TABLE `billing` DISABLE KEYS */;
-INSERT INTO `billing` VALUES (1,'Rommel Niebres','121212','1232132132',165.92,NULL,NULL),(2,'Rommel Niebres','12','1232132132',263.85,NULL,NULL),(3,'Rommel Niebres','12','1212121121',97.93,NULL,NULL),(4,'Rommel Niebres','12','1232132132',240.86,NULL,NULL),(5,'Rommel Niebres','12','123',0,NULL,NULL),(6,'Rommel Niebres','12','1232132132',13.99,NULL,NULL),(7,'Rommel Niebres','12','1232132132',13990100,NULL,NULL);
+INSERT INTO `billing` VALUES (15,'Rommel Niebres','Philippines','123456789',216.95,'2021-04-17 01:46:46',NULL);
 /*!40000 ALTER TABLE `billing` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-04-16 14:31:59
+-- Dump completed on 2021-04-17  9:47:46

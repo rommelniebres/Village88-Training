@@ -29,7 +29,7 @@ CREATE TABLE `products` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,'Dojo Shirt',13.99,'2021-04-16 11:47:45',NULL),(2,'Dojo Cup',22.99,'2021-04-16 11:48:15',NULL);
+INSERT INTO `products` VALUES (1,'Dojo Shirt',13.99,'2021-04-16 11:47:45',NULL),(2,'Dojo Cup',22.99,'2021-04-16 11:48:15',NULL),(3,'Dojo Jacket',49.99,'2021-04-17 09:45:03',NULL),(4,'Dojo Belt',9.99,'2021-04-17 09:45:12',NULL),(5,'Dojo Kunai',119.99,'2021-04-17 09:45:21',NULL);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-04-16 14:31:59
+-- Dump completed on 2021-04-17  9:47:46

@@ -32,21 +32,38 @@ class Product extends CI_Model {
                                 products.id = cart.product_id"
                             )->result_array();
     }
-
     function delete_item_by_id($id)
     {
         return $this->db->query("DELETE FROM cart WHERE id = ?", array($id));
     }
     function delete_all_cart()
     {
-        return $this->db->query("DELETE FROM cart");
+        $this->db->query("DELETE FROM cart");
     }
     function count_cart()
     {
         return $this->db->query("SELECT * FROM cart;");
     }
+    public function validate($post) {
+        $this->load->library("form_validation");
+        if($this->router->method == "add")
+        {
+            $this->form_validation->set_rules("quantity", "Quantity", "required|greater_than[0]");
+
+        }
+        else{
+            $this->form_validation->set_rules("name", "Name", "required");
+            $this->form_validation->set_rules("address", "Address", "required");
+            $this->form_validation->set_rules("card", "Card", "required|numeric");
+        }
+        if($this->form_validation->run()) 
+        {
+            return "valid";
+        } 
+        else 
+        {
+            return (validation_errors());
+        }
+    }
 }
-
-
-
 ?>
