@@ -32,12 +32,12 @@ class Lead extends CI_Model {
                 LEFT JOIN leads 
                     ON sites.site_id = leads.site_id 
                 WHERE
-                    DATE(leads.registered_datetime) >= '$date[date_from]'
+                    DATE(leads.registered_datetime) >= ?
                     AND 
-                    DATE(leads.registered_datetime) <= '$date[date_to]'  
+                    DATE(leads.registered_datetime) <= ?  
                 GROUP BY clients.client_id
                 ORDER BY clients.client_id, sites.site_id";
-        return $this->db->query($query)->result_array();
+        return $this->db->query($query, array($date['date_from'], $date['date_to']))->result_array();
     }
     /* 
     This validates the date settings from the form whether it is valid and filled in every field.
