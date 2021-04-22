@@ -1,0 +1,25 @@
+body * {
+	text-align: center;
+}
+
+img {
+	height: 100px;
+	width: 100px;
+}
+
+ul {
+	margin: 10px;
+	display: inline-block;
+	text-align: center;
+}
+
+li {
+	display: inline-block;
+	height: 100px;
+	list-style: none;
+	padding: 10px;
+	width: 100px;
+}
+.name {
+	text-transform: capitalize;
+}
