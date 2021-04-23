@@ -1,0 +1,20 @@
+body {
+	margin: 0;
+	padding: 30px;
+}
+#posts {
+	width: 100%;
+	min-height: 500px;
+	vertical-align: top;
+}
+.posts {
+	border: 1px solid black;
+	display: inline-block;
+	margin: 20px;
+	min-height: 100px;
+	vertical-align: top;
+	width: 20%;
+}
+#get_all_button {
+	display: block;
+}
