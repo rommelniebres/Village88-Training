@@ -1,0 +1,54 @@
+* {
+	font-family: sans-serif;
+	padding: 0px;
+	margin: 0px;
+}
+body {
+	padding: 30px;
+}
+#notes {
+	width: 100%;
+	min-height: 500px;
+}
+#create {
+	width: 200px;
+	padding: 10px;
+}
+#create input,
+#create textarea {
+	padding: 10px;
+	margin: 5px 0px;
+	width: 100%;
+}
+#create textarea {
+	height: 100px;
+}
+#create input[type='submit'] {
+	padding: 10px;
+	background-color: dodgerblue;
+	border: 2px solid rgb(1, 0, 53);
+	color: white;
+}
+h2,
+h3 {
+	display: inline-block;
+}
+.notes {
+	width: 200px;
+	min-height: 200px;
+	display: inline-block;
+	vertical-align: top;
+	margin: 20px;
+}
+.notes textarea {
+	padding: 10px;
+	margin: 20px 0px;
+	height: 150px;
+	width: 90%;
+}
+#delete input[type='submit'] {
+	padding: 10px;
+	background-color: dodgerblue;
+	border: 2px solid rgb(1, 0, 53);
+	color: white;
+}
