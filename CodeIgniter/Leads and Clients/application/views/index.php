@@ -6,63 +6,40 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Leads and Clients</title>
 	<link rel="stylesheet" href="/assets/css/style.css">
-	<!-- Canvas Graph starts here -->
-	<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>  
-	<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>  
-	<script type="text/javascript">
-		window.onload = function () {
-		var options = {
-			title: {
-				text: "Customers and number of new leads"
-			},
-			animationEnabled: true,
-			data: [{
-				type: "pie",
-				startAngle: 40,
-				toolTipContent: "<b>{label}</b>: {y} leads",
-				showInLegend: "true",
-				legendText: "{label}",
-				indexLabelFontSize: 16,
-				indexLabel: "{label} - {y}",
-				dataPoints: [
-<?php			foreach($leads as $lead)
-				{ ?>
-					{ y: <?= $lead['number_of_leads']?>, label: "<?= $lead['client_name']?>"},
-<?php			} ?>
-				]
-			}]
-		};
-		$("#chartContainer").CanvasJSChart(options);
-	}
-	</script>
-	<!-- Canvas Graph ends here -->
 </head>
 <body>
-	<header>
-		<h1>Report Dashboard </h1>
-	</header>
-	<!-- Date manipulation starts here -->
-	<h3><?= $this->session->flashdata('status'); ?></h3>
-	<form action="/leads/set_date" method="post">
+	<!-- Search manipulation starts here -->
+	<form action="/leads/search" method="post">
+		Name: <input type="text" name="name">
 		<input type="date" name="date_from">
 		<input type="date" name="date_to">
 		<input type="submit" value="Update">
-		<a href="/leads">Reset(Get all records)</a>
+		<div>
+<?php	for($i=1; $i <= ceil($count/10); $i++) { ?>
+		<a href="/leads/page/<?= $i ?>"><?= $i ?></a>
+<?php	}?>
+		</div>
 	</form>
-	<!-- Date manipulation ends here -->
+
+	<!-- Search manipulation ends here -->
 	<!-- Get the list based on the set date. If it is not set get all the date instead -->
 	<section>
-		<h2>List of all customers and # of leads</h2>
 		<table>
 			<tr>
-				<th>Customer Name</th>
-				<th>Number of Leads</th>
+				<th>Leads ID</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Registered Datetime</th>
+				<th>Email</th>
 			</tr>
 <?php		foreach($leads as $lead)
 			{ ?>
 			<tr>
-				<td><?= $lead['client_name'] ?></td>
-				<td><?= $lead['number_of_leads'] ?></td>
+				<td><?= $lead['leads_id'] ?></td>
+				<td><?= $lead['first_name'] ?></td>
+				<td><?= $lead['last_name'] ?></td>
+				<td><?= date("Y-m-d", strtotime($lead['registered_datetime'])) ?></td>
+				<td><?= $lead['email'] ?></td>
 			</tr>
 <?php		} ?>
 		</table>

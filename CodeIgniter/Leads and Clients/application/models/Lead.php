@@ -6,54 +6,55 @@ class Lead extends CI_Model {
     */
     function get_all_leads()
     {
-        $query = "SELECT 
-                    CONCAT(clients.first_name , ' ', clients.last_name) AS client_name,
-                    COUNT(leads.leads_id) AS number_of_leads
-                FROM clients
-                LEFT JOIN sites 
-                    ON clients.client_id = sites.client_id
-                LEFT JOIN leads 
-                    ON sites.site_id = leads.site_id 
-                GROUP BY clients.client_id
-                ORDER BY clients.client_id, sites.site_id";
-        return $this->db->query($query)->result_array();
+        $query = "SELECT
+                    leads_id,
+                    first_name,
+                    last_name,
+                    registered_datetime,
+                    email
+                FROM leads
+                ORDER BY leads.leads_id";
+        return $this->db->query($query)->num_rows();
     }
-    /* 
-    Get all the leads based on the date form settings (date from to date to).
-    */
-    function get_all_leads_by_date($date)
+    function count_search_data($data)
     {
-        $query = "SELECT 
-                    CONCAT(clients.first_name , ' ', clients.last_name) AS client_name,
-                    COUNT(leads.leads_id) AS number_of_leads
-                FROM clients
-                LEFT JOIN sites 
-                    ON clients.client_id = sites.client_id
-                LEFT JOIN leads 
-                    ON sites.site_id = leads.site_id 
-                WHERE
-                    DATE(leads.registered_datetime) >= ?
+        $query = "SELECT *
+                FROM leads
+                WHERE (first_name LIKE ? OR last_name LIKE ?)
                     AND 
-                    DATE(leads.registered_datetime) <= ?  
-                GROUP BY clients.client_id
-                ORDER BY clients.client_id, sites.site_id";
-        return $this->db->query($query, array($date['date_from'], $date['date_to']))->result_array();
+                    DATE(registered_datetime)
+                    BETWEEN ? AND ?";
+        $values = array(
+            $this->security->xss_clean($data['name'].'%'),
+            $this->security->xss_clean($data['name'].'%'), 
+            $this->security->xss_clean($data['date_from']), 
+            $this->security->xss_clean($data['date_to']),
+            
+        );
+        return $this->db->query($query, $values)->result_array();
     }
-    /* 
-    This validates the date settings from the form whether it is valid and filled in every field.
-    */
-    public function validate($date) {
-        $this->load->library("form_validation");
-        $this->form_validation->set_rules("date_from", "Date From", "required");
-        $this->form_validation->set_rules("date_to", "Date To", "required");
-        if($this->form_validation->run()) 
-        {
-            return "valid";
-        } 
-        else 
-        {
-            return (validation_errors());
-        }
+    function search_data($data)
+    {
+        $query = "SELECT
+                    leads_id,
+                    first_name,
+                    last_name,
+                    registered_datetime,
+                    email
+                FROM leads
+                WHERE (first_name LIKE ? OR last_name LIKE ?)
+                    AND 
+                    DATE(registered_datetime)
+                    BETWEEN ? AND ?
+                ORDER BY leads_id
+                LIMIT 5, 10";
+        $values = array(
+            $this->security->xss_clean($data['name'].'%'),
+            $this->security->xss_clean($data['name'].'%'), 
+            $this->security->xss_clean($data['date_from']), 
+            $this->security->xss_clean($data['date_to'])
+        );
+        return $this->db->query($query, $values)->result_array();
     }
 }
 
