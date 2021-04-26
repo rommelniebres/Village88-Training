@@ -1,0 +1,3 @@
+index.php - View file
+Users.php - Controller file
+User.php - Model file

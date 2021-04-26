@@ -1,0 +1,4 @@
+index.php - View file
+Users.php - Controller file
+User.php - Model file
+partials - partial html for ajax
