@@ -1,0 +1,21 @@
+/* * {
+	outline: 1px dotted red;
+} */
+body {
+	margin: 0;
+	padding: 30px;
+}
+#tasks {
+	display: inline-block;
+	margin: 20px;
+	min-height: 500px;
+	vertical-align: top;
+	width: 40%;
+}
+#form {
+	display: inline-block;
+	margin: 20px;
+	min-height: 500px;
+	vertical-align: top;
+	width: 40%;
+}
