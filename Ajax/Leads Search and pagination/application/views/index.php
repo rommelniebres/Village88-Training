@@ -9,18 +9,22 @@
 </head>
 <body>
 	<!-- Search manipulation starts here -->
-	<form action="/leads/search" method="post">
+	<form action="/leads/search/" method="post">
 		Name: <input type="text" name="name">
 		<input type="date" name="date_from">
 		<input type="date" name="date_to">
 		<input type="submit" value="Update">
 		<div>
-<?php	for($i=1; $i <= ceil($count/10); $i++) { ?>
-		<a href="/leads/page/<?= $i ?>"><?= $i ?></a>
-<?php	}?>
+<?php	for($i=1; $i <= ceil($count/10); $i++) { 
+			if($this->session->userdata('searching') == FALSE) { ?>
+				<a href="/leads/page/<?= $i ?>"><?= $i ?></a>
+<?php		} 
+			else { ?>
+				<a href="/leads/search/<?= $i ?>"><?= $i ?></a>
+<?php		}
+		}?>
 		</div>
 	</form>
-
 	<!-- Search manipulation ends here -->
 	<!-- Get the list based on the set date. If it is not set get all the date instead -->
 	<section>
