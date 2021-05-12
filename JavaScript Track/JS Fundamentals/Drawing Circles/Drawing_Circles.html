@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Drawing Circle</title>
+	<link rel="stylesheet" href="circle.css">
+	<script>
+		document.addEventListener('DOMContentLoaded', (event) => {
+			let bgcolor = '#CCE8CC';	// initial color
+			document.body.addEventListener("click", function (e) {	// triggered when click anywhere on the body
+				let circle = document.createElement("p");	// create p tag
+				let x = e.clientX;		// Get the horizontal coordinate
+				let y = e.clientY;  	// Get the vertical coordinate
+				let random_radius = Math.floor(Math.random() * 200) + 10; 	// create random radius
+				circle.setAttribute("class", "circle"); //set class for p tag
+				circle.setAttribute("style",
+					"width: " + random_radius + 'px;' +
+					"height: " + random_radius + 'px;' +
+					"left: " + (x - random_radius / 2) + 'px;' +
+					"top: " + (y - random_radius / 2) + 'px;' +
+					"display: block;" +
+					"background-color: " + bgcolor);
+				// decreasing radius
+				setInterval(function () {
+					random_radius -= 1;
+					circle.style.width = random_radius + 'px';
+					circle.style.height = random_radius + 'px';
+					if (random_radius == 0) {
+						circle.style = "";
+						circle.remove();
+					}
+				}, 30);
+				document.body.appendChild(circle);
+			});
+			const btn = document.querySelectorAll('button.btn:not(.btn-delete)');
+			for (let i = 0; i < btn.length; i++) {
+				btn[i].addEventListener("click", function (e) {
+					e.stopPropagation();
+					bgcolor = btn[i].style.backgroundColor;
+					btn[i].style.backgroundColor = "#333333";
+					setTimeout(function () {
+						btn[i].style.backgroundColor = bgcolor;
+					}, 1000);
+				});
+			}
+			document.getElementById("btn4").addEventListener("click", function (e) {
+				e.stopPropagation();
+				let p = document.querySelectorAll("p")
+				for (let i = 0; i < p.length; i++) {
+					p[i].style = "";
+					p[i].remove();
+				}
+			});
+		});
+	</script>
+</head>
+
+<body>
+	<div id="buttons">
+		<button class="btn" style="background-color:#CCE8CC"></button>
+		<button class="btn" style="background-color:#9fc4f8"></button>
+		<button class="btn" style="background-color:#b4a7d5"></button>
+		<button class="btn-delete" id="btn4" style="background-color:crimson">RESET</button>
+	</div>
+</body>
+
+</html>
