@@ -1,0 +1,23 @@
+<html>
+
+<head>
+    <title>JS Circle Demo</title>
+    <script src="circle.js"></script>
+    <link rel="stylesheet" href="circle.css">
+</head>
+
+<body>
+    <div id='canvas'></div>
+    <script>
+        let cLib = new Circles(100);
+        // draw 100 circles on #canvas
+        cLib.draw_circles("canvas");
+        setInterval(function () {
+            let cLib = new Circles(100);
+            // draw 100 circles on #canvas
+            cLib.draw_circles("canvas");
+        }, 6000);
+        // initialize cLib (circleLibrary) with 100 circles
+
+    </script>
+</body>

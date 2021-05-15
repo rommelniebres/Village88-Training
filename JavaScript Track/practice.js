@@ -1,33 +1,67 @@
-function battle() {
-	for (let i = 1; i <= 10; i++) {
-		console.log('===Round ' + i + '===');
-		ninja1.attack();
-		ninja2.attack();
-		console.log('--------------------------------------------------------------------------------------------');
+class World {
+	constructor(num) {
+		this.num = num;
+		let cities = [];
+		this.cities = cities;
+		for (let i = 0; i < num; i++) {
+			this.cities.push(new City());
+		}
+	}
+	add_city(name) {
+		return this.cities.push(new City(name));
+	}
+	random_city() {
+		let random_city_name = new City();
+		return random_city_name;
+	}
+	total_cities() {
+		return this.cities.length;
 	}
 }
-var ninja1 = {
-	hp: 100,
-	strength: 15,
-	attack: function () {
-		let damage = Math.floor(Math.random() * this.strength);
-		let ninja2_new_hp = ninja2.hp - damage;
-		ninja2.hp = ninja2_new_hp;
-		let result = 'Ninja1 attacks Ninja2 and does a damage of ' + damage + '! Ninja1 health: ' + this.hp + '  Ninja2 health: ' + ninja2_new_hp;
-		console.log(result);
-	},
-};
-var ninja2 = {
-	hp: 150,
-	strength: 10,
-	attack: function () {
-		let damage = Math.floor(Math.random() * this.strength);
-		let ninja1_new_hp = ninja1.hp - damage;
-		ninja1.hp = ninja1_new_hp;
-		let result = 'Ninja2 attacks Ninja1 and does a damage of ' + damage + '! Ninja1 health: ' + ninja1_new_hp + '  Ninja2 health: ' + this.hp;
-		console.log(result);
-	},
-};
-battle();
-const winner = ninja1.hp > ninja2.hp ? 'Ninja1 WINS!!!!!' : 'Ninja2 WINS!!!!!';
-console.log(winner);
+
+class City {
+	constructor(name) {
+		let citizens = [];
+		this.citizens = citizens;
+		for (let i = 0; i < 50; i++) {
+			this.add_citizen();
+		}
+		if (name) {
+			this.name = name;
+		} else {
+			this.name = '';
+			let characters = 'abcdefghijklmnopqrstuvwxyz';
+			let length = 5;
+			for (let i = 0; i < length; i++) {
+				this.name += characters.charAt(Math.floor(Math.random() * length));
+			}
+			return this.name;
+		}
+	}
+	add_citizen() {
+		return this.citizens.push(new Citizen());
+	}
+}
+
+class Citizen {
+	constructor() {
+		this.age = Math.floor(Math.random() * 100);
+	}
+}
+
+//create a world with 100 cities
+let world = new World(100);
+
+//adds a new city called 'hackerhero'
+world.add_city('hackerhero');
+
+//should pull out a random city object within the world and log its value
+console.log('Random city name: ', world.random_city().name);
+
+//should pull out a random city object within the world and log its value
+console.log('Age of first citizen in another random city: ', world.random_city().citizens[0]);
+
+//should log 101 as there are 101  cities now
+console.log('# of Cities: ', world.total_cities());
+let world2 = new World(50);
+console.log(world.cities.length);

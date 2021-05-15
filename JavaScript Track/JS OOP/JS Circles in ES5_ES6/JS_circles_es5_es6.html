@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Drawing Circle</title>
+	<link rel="stylesheet" href="circle.css">
+	<script>
+		document.addEventListener('DOMContentLoaded', (event) => {
+			function Circle() {
+				this.p = document.createElement("p"); // create p tag
+				this.random_radius = Math.floor(Math.random() * 200) + 10; 	// create random radius
+				this.coordinatesX = 0;
+				this.coordinatesY = 0;
+				this.init = function () {
+					document.body.addEventListener("click", function (e) {	// triggered when click anywhere on the body
+						let circle = new Circle();
+						circle.get_coordinate(e);
+						circle.set_attr(bgcolor);
+						// decreasing radius
+						setInterval(function () {
+							circle.random_radius -= 1;
+							circle.p.style.width = circle.random_radius + 'px';
+							circle.p.style.height = circle.random_radius + 'px';
+							if (circle.random_radius == 0) {
+								circle.p.style = "";
+								circle.p.remove();
+							}
+						}, 30);
+						document.body.appendChild(circle.p);
+					});
+				}
+				this.set_attr = function (bgcolor) {
+					this.p.setAttribute("class", "circle"); //set class for p tag
+					this.p.setAttribute("style",
+						"width: " + this.random_radius + 'px;' +
+						"height: " + this.random_radius + 'px;' +
+						"left: " + (this.coordinatesX - this.random_radius / 2) + 'px;' +
+						"top: " + (this.coordinatesY - this.random_radius / 2) + 'px;' +
+						"display: block;" +
+						"background-color: " + bgcolor);
+				}
+				this.get_coordinate = function (e) {
+					this.coordinatesX = e.clientX;	// Get the horizontal coordinate
+					this.coordinatesY = e.clientY;	// Get the vertical coordinate
+				}
+			}
+			function Button() {
+				this.btn = document.querySelectorAll('button.btn:not(.btn-delete)');
+				this.all_btn = function () {
+					for (let i = 0; i < this.btn.length; i++) {
+						this.btn[i].addEventListener("click", function (e) {
+							e.stopPropagation();
+							let btn_bg = this.style.backgroundColor
+							bgcolor = btn_bg;
+							btn_bg = "#333333";
+							setTimeout(function () {
+								btn_bg = bgcolor;
+							}, 1000);
+						});
+					}
+				}
+				this.delete = function () {
+					document.getElementById("btn4").addEventListener("click", function (e) {
+						e.stopPropagation();
+						let p = document.querySelectorAll("p")
+						for (let i = 0; i < p.length; i++) {
+							p[i].style = "";
+							p[i].remove();
+						}
+					});
+				}
+			}
+			let bgcolor = '#CCE8CC'; // initial color
+			let button = new Button();
+			let circle = new Circle();
+			circle.init();
+			button.all_btn();
+			button.delete();
+		});
+	</script>
+</head>
+
+<body>
+	<div id="buttons">
+		<button class="btn" style="background-color:#CCE8CC"></button>
+		<button class="btn" style="background-color:#9fc4f8"></button>
+		<button class="btn" style="background-color:#b4a7d5"></button>
+		<button class="btn-delete" id="btn4" style="background-color:crimson">RESET</button>
+	</div>
+</body>
+
+</html>
+
+
+
+<!-- ES5 Prototype -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Drawing Circle</title>
+	<link rel="stylesheet" href="circle.css">
+	<script>
+		document.addEventListener('DOMContentLoaded', (event) => {
+			function Circle() {
+				this.p = document.createElement("p"); // create p tag
+				this.random_radius = Math.floor(Math.random() * 200) + 10; 	// create random radius
+				this.coordinatesX = 0;
+				this.coordinatesY = 0;
+				Circle.prototype.init = function () {
+					document.body.addEventListener("click", function (e) {	// triggered when click anywhere on the body
+						let circle = new Circle();
+						circle.get_coordinate(e);
+						circle.set_attr(bgcolor);
+						// decreasing radius
+						setInterval(function () {
+							circle.random_radius -= 1;
+							circle.p.style.width = circle.random_radius + 'px';
+							circle.p.style.height = circle.random_radius + 'px';
+							if (circle.random_radius == 0) {
+								circle.p.style = "";
+								circle.p.remove();
+							}
+						}, 30);
+						document.body.appendChild(circle.p);
+					});
+				}
+				Circle.prototype.set_attr = function (bgcolor) {
+					this.p.setAttribute("class", "circle"); //set class for p tag
+					this.p.setAttribute("style",
+						"width: " + this.random_radius + 'px;' +
+						"height: " + this.random_radius + 'px;' +
+						"left: " + (this.coordinatesX - this.random_radius / 2) + 'px;' +
+						"top: " + (this.coordinatesY - this.random_radius / 2) + 'px;' +
+						"display: block;" +
+						"background-color: " + bgcolor);
+				}
+				Circle.prototype.get_coordinate = function (e) {
+					this.coordinatesX = e.clientX;	// Get the horizontal coordinate
+					this.coordinatesY = e.clientY;	// Get the vertical coordinate
+				}
+			}
+			function Button() {
+				this.btn = document.querySelectorAll('button.btn:not(.btn-delete)');
+				Button.prototype.all_btn = function () {
+					for (let i = 0; i < this.btn.length; i++) {
+						this.btn[i].addEventListener("click", function (e) {
+							e.stopPropagation();
+							let btn_bg = this.style.backgroundColor
+							bgcolor = btn_bg;
+							btn_bg = "#333333";
+							setTimeout(function () {
+								btn_bg = bgcolor;
+							}, 1000);
+						});
+					}
+				}
+				Button.prototype.delete = function () {
+					document.getElementById("btn4").addEventListener("click", function (e) {
+						e.stopPropagation();
+						let p = document.querySelectorAll("p")
+						for (let i = 0; i < p.length; i++) {
+							p[i].style = "";
+							p[i].remove();
+						}
+					});
+				}
+			}
+			let bgcolor = '#CCE8CC'; // initial color
+			let button = new Button();
+			let circle = new Circle();
+			circle.init();
+			button.all_btn();
+			button.delete();
+		});
+	</script>
+</head>
+
+<body>
+	<div id="buttons">
+		<button class="btn" style="background-color:#CCE8CC"></button>
+		<button class="btn" style="background-color:#9fc4f8"></button>
+		<button class="btn" style="background-color:#b4a7d5"></button>
+		<button class="btn-delete" id="btn4" style="background-color:crimson">RESET</button>
+	</div>
+</body>
+
+</html> -->
+
+<!-- ES6 -->
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Drawing Circle</title>
+	<link rel="stylesheet" href="circle.css">
+	<script>
+		document.addEventListener('DOMContentLoaded', (event) => {
+			class Circle {
+				constructor() {
+					this.p = document.createElement("p"); // create p tag
+					this.random_radius = Math.floor(Math.random() * 200) + 10; 	// create random radius
+					this.coordinatesX = 0;
+					this.coordinatesY = 0;
+				}
+				init() {
+					document.body.addEventListener("click", function (e) {	// triggered when click anywhere on the body
+						let circle = new Circle();
+						circle.get_coordinate(e);
+						circle.set_attr(bgcolor);
+						// decreasing radius
+						setInterval(function () {
+							circle.random_radius -= 1;
+							circle.p.style.width = circle.random_radius + 'px';
+							circle.p.style.height = circle.random_radius + 'px';
+							if (circle.random_radius == 0) {
+								circle.p.style = "";
+								circle.p.remove();
+							}
+						}, 30);
+						document.body.appendChild(circle.p);
+					});
+				}
+				set_attr(bgcolor) {
+					this.p.setAttribute("class", "circle"); //set class for p tag
+					this.p.setAttribute("style",
+						"width: " + this.random_radius + 'px;' +
+						"height: " + this.random_radius + 'px;' +
+						"left: " + (this.coordinatesX - this.random_radius / 2) + 'px;' +
+						"top: " + (this.coordinatesY - this.random_radius / 2) + 'px;' +
+						"display: block;" +
+						"background-color: " + bgcolor);
+				}
+				get_coordinate(e) {
+					this.coordinatesX = e.clientX;	// Get the horizontal coordinate
+					this.coordinatesY = e.clientY;	// Get the vertical coordinate
+				}
+			}
+			class Button {
+				constructor() {
+					this.btn = document.querySelectorAll('button.btn:not(.btn-delete)');
+				}
+				all_btn() {
+					for (let i = 0; i < this.btn.length; i++) {
+						this.btn[i].addEventListener("click", function (e) {
+							e.stopPropagation();
+							let btn_bg = this.style.backgroundColor
+							bgcolor = btn_bg;
+							btn_bg = "#333333";
+							setTimeout(function () {
+								btn_bg = bgcolor;
+							}, 1000);
+						});
+					}
+				}
+				delete() {
+					document.getElementById("btn4").addEventListener("click", function (e) {
+						e.stopPropagation();
+						let p = document.querySelectorAll("p")
+						for (let i = 0; i < p.length; i++) {
+							p[i].style = "";
+							p[i].remove();
+						}
+					});
+				}
+			}
+			let bgcolor = '#CCE8CC'; // initial color
+			let button = new Button();
+			let circle = new Circle();
+			circle.init();
+			button.all_btn();
+			button.delete();
+		});
+	</script>
+</head>
+
+<body>
+	<div id="buttons">
+		<button class="btn" style="background-color:#CCE8CC"></button>
+		<button class="btn" style="background-color:#9fc4f8"></button>
+		<button class="btn" style="background-color:#b4a7d5"></button>
+		<button class="btn-delete" id="btn4" style="background-color:crimson">RESET</button>
+	</div>
+</body>
+
+</html> -->

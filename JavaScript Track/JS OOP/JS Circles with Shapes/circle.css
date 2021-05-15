@@ -1,0 +1,53 @@
+body {
+	width: 100%;
+	height: 900px;
+}
+
+#buttons {
+	position: absolute;
+	z-index: 1;
+}
+
+.btn {
+	text-align: center;
+	margin-top: 50px;
+	margin-right: 10px;
+	width: 70px;
+	height: 40px;
+	border: 2px solid black;
+}
+.shapes {
+	border: 2px solid black;
+	height: 40px;
+	margin-right: 10px;
+	margin-top: 50px;
+	text-align: center;
+	width: 40px;
+}
+#shapes {
+	margin-left: 400px;
+}
+#circle {
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+}
+#square {
+	width: 40px;
+	height: 40px;
+}
+#star {
+	width: 40px;
+	height: 40px;
+	border-radius: 25%;
+}
+
+.btn-delete {
+	text-align: center;
+	margin-right: 10px;
+	width: 70px;
+	height: 40px;
+	display: block;
+	margin-top: 10px;
+	font-weight: 900;
+}
