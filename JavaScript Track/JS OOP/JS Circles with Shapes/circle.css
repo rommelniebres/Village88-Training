@@ -23,6 +23,7 @@ body {
 	margin-top: 50px;
 	text-align: center;
 	width: 40px;
+	background-color: white;
 }
 #shapes {
 	margin-left: 400px;
@@ -37,9 +38,19 @@ body {
 	height: 40px;
 }
 #star {
-	width: 40px;
+	clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+	vertical-align: bottom;
+	margin-top: 0px;
+}
+#star-box {
+	vertical-align: bottom;
 	height: 40px;
-	border-radius: 25%;
+	width: 40px;
+	color: white;
+	display: inline-block;
+	background-color: rgb(61, 61, 61);
+	border-radius: 50%;
+	padding: 2px;
 }
 
 .btn-delete {

@@ -4,13 +4,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
 		constructor() {
 			this.p = document.createElement('p'); // create p tag
 			this.random_radius = Math.floor(Math.random() * 200) + 10; // create random radius
-			this.coordinatesX = 0;
-			this.coordinatesY = 0;
-			this.border_radius = '50%';
+			this.coordinatesX = 0; // coordinates for horizontal random radius
+			this.coordinatesY = 0; // coordinates for vertical random radius
+			this.border_radius = '50%'; // initial border radius
 		}
 		init() {
 			document.body.addEventListener('click', function (e) {
-				// triggered when click anywhere on the body
 				let shape;
 				if (current_shape == 'circle') {
 					shape = new Circle();
@@ -38,25 +37,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
 		set_attr(bgcolor, border_radius) {
 			this.p.setAttribute(
 				'style',
-				'width: ' +
-					this.random_radius +
-					'px;' +
-					'height: ' +
-					this.random_radius +
-					'px;' +
-					'left: ' +
-					(this.coordinatesX - this.random_radius / 2) +
-					'px;' +
-					'top: ' +
-					(this.coordinatesY - this.random_radius / 2) +
-					'px;' +
-					'display: block;' +
-					'background-color: ' +
-					bgcolor +
-					';' +
-					'position: absolute; border: 3px solid black;' +
-					'border-radius: ' +
-					border_radius
+				`width: ${this.random_radius}px; height: ${this.random_radius}px;
+				left: ${this.coordinatesX - this.random_radius / 2}px;
+				top: ${this.coordinatesY - this.random_radius / 2}px;
+				display: block; background-color: ${bgcolor}; position: absolute;
+				border: 1px solid black; border-radius: ${border_radius}`
 			);
 		}
 		get_coordinate(e) {
@@ -80,32 +65,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
 	}
 	// Star class
 	class Star extends Shapes {
-		constructor(border_radius) {
-			super(border_radius);
-			this.border_radius = '25%';
-		}
-		set_attr(bgcolor, border_radius) {
+		set_attr(bgcolor) {
 			this.p.setAttribute(
 				'style',
-				'width: ' +
-					this.random_radius +
-					'px;' +
-					'height: ' +
-					this.random_radius +
-					'px;' +
-					'left: ' +
-					(this.coordinatesX - this.random_radius / 2) +
-					'px;' +
-					'top: ' +
-					(this.coordinatesY - this.random_radius / 2) +
-					'px;' +
-					'display: block;' +
-					'background-color: ' +
-					bgcolor +
-					';' +
-					'position: absolute; border: 3px solid black;' +
-					'border-radius: ' +
-					border_radius
+				`width: ${this.random_radius}px; height: ${this.random_radius}px;
+				left: ${this.coordinatesX - this.random_radius / 2}px;
+				top: ${this.coordinatesY - this.random_radius / 2}px;
+				display: block; background-color: ${bgcolor}; position: absolute;
+				clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)`
 			);
 		}
 	}
