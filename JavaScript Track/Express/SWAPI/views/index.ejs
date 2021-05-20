@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SWAPI</title>
+    <link rel="stylesheet" href="../stylesheets/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#peopleBtn').click(function () {
+                var html_str = "";
+                $.get('/people', function (data) {
+                    console.log("got the data", data);
+                    html_str += "<ul>";
+                    for (let i in data.results) {
+                        html_str += `<li>${data.results[i].name}</li>`;
+                        $("#list").html(html_str);
+                    }
+                    html_str += "</ul>";
+                }, 'json');
+            });
+            $('#planetBtn').click(function () {
+                var html_str = "";
+                $.get('/planet', function (data) {
+                    console.log("got the data", data);
+                    html_str += "<ul>";
+                    for (let i in data.results) {
+                        html_str += `<li>${data.results[i].name}</li>`;
+                        $("#list").html(html_str);
+                    }
+                    html_str += "</ul>";
+                }, 'json');
+            });
+            $('#nextBtn').click(function () {
+                var html_str = "";
+                $.get('/next', function (data) {
+                    console.log("got the data", data);
+                    html_str += "<ul>";
+                    for (let i in data.results) {
+                        html_str += `<li>${data.results[i].name}</li>`;
+                        $("#list").html(html_str);
+                    }
+                    html_str += "</ul>";
+                }, 'json');
+            });
+            $('#previousBtn').click(function () {
+                var html_str = "";
+                $.get('/previous', function (data) {
+                    console.log("got the data", data);
+                    html_str += "<ul>";
+                    for (let i in data.results) {
+                        html_str += `<li>${data.results[i].name}</li>`;
+                        $("#list").html(html_str);
+                    }
+                    html_str += "</ul>";
+                }, 'json');
+            });
+            $('#allBtn').click(function () {
+                var html_str = "";
+                $.get('/show_all', function (data) {
+                    console.log("got the data", data);
+                    html_str += "<ul>";
+                    for (let i in data) {
+                        html_str += `<li>${data[i]}</li>`;
+                        $("#list").html(html_str);
+                    }
+                    html_str += "</ul>";
+                }, 'json');
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div id="container">
+        <h1>Star Wars Wiki</h1>
+        <h4>What would you like to know more about?</h4>
+        <button id="peopleBtn">People</button>
+        <button id="planetBtn">Planet</button>
+        <div id="list">
+        </div>
+        <button id="previousBtn">Previous</button>
+        <button id="allBtn">Show All</button>
+        <button id="nextBtn">Next</button>
+    </div>
+
+</body>
+
+</html>

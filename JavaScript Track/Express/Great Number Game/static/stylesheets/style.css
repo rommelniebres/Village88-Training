@@ -1,0 +1,62 @@
+body {
+	background-color: #222222;
+	color: white;
+	text-align: center;
+}
+form {
+	background-color: #555555;
+	display: inline-block;
+	padding: 20px;
+	text-align: left;
+}
+form input {
+	padding: 4px;
+	display: block;
+}
+input[type='submit'] {
+	background-color: #767676;
+	color: white;
+	margin: auto;
+	margin-top: 10px;
+}
+textarea {
+	display: block;
+	padding: 10px;
+	text-align: left;
+	width: 300px;
+	margin-bottom: 10px;
+}
+a {
+	background-color: #777777;
+	color: white;
+	display: block;
+	margin: auto;
+	margin-top: 10px;
+	padding: 5px;
+	text-decoration: none;
+	width: 100px;
+}
+.start {
+	background-color: rgb(92, 195, 255);
+	border: 3px solid black;
+	padding: 20px;
+	margin: auto;
+	text-align: middle;
+	width: 200px;
+}
+.wrong {
+	background-color: rgb(255, 130, 130);
+	border: 3px solid black;
+	padding: 20px;
+	margin: auto;
+	text-align: middle;
+	width: 200px;
+}
+.correct {
+	background-color: #62c96d;
+	border: 3px solid black;
+	padding: 20px;
+	margin: auto;
+	text-align: middle;
+	width: 200px;
+}

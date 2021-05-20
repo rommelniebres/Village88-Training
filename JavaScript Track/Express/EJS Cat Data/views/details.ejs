@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../stylesheets/style2.css">
+    <title>
+        <%= cat.name %>
+    </title>
+</head>
+
+<body>
+    <h2>
+        <%= cat.name %> Informations:
+    </h2>
+    <img src="../images/cat<%= cat.number %>.jpg" alt="">
+    <h3>
+        Name: <%= cat.name %>
+    </h3>
+    <h4>
+        Favorite Food: <%= cat.favorite_food %>
+    </h4>
+    <h4>
+        Age: <%= cat.age %>
+    </h4>
+    <h4>
+        Sleeping spot: <%= cat.sleeping_spot %>
+    </h4>
+    <hr>
+</body>
+
+</html>

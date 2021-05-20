@@ -1,0 +1,14 @@
+body {
+	text-align: center;
+	margin-top: 20%;
+}
+
+form {
+	display: inline-block;
+}
+
+form input {
+	padding: 5px 10px;
+	background-color: dodgerblue;
+	color: white;
+}
