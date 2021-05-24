@@ -21,6 +21,7 @@ io.on('connection', function (socket) {
 	socket.on('clicked', function () {
 		io.emit('notify', socket.id);
 	});
+	// listener for disconnection of clients, emits client/socket id
 	socket.on('disconnect', function () {
 		io.emit('left', socket.id);
 	});
