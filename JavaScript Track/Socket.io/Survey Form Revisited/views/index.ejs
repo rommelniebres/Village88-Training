@@ -7,11 +7,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Survey Form</title>
     <link rel="stylesheet" href="../stylesheets/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            let socket = io();
+            let html_str = "";
+            // handle the submit event from the form
+            $('form').submit(function () {
+                html_str = "";
+                const form = document.querySelector('form');
+                // construct the form data into object type
+                const data = Object.fromEntries(new FormData(form).entries());
+                // reset the form field by using querySelector function 'reset'
+                form.reset();
+                socket.emit('posting_form', { data: data });
+                return false;
+            });
+            // listener for the updated_message that the server will emit
+            socket.on('updated_message', function (data) {
+                let info = data.msg;
+                html_str += `<p>You emitted the following information to the server:</p>`;
+                html_str += `<p>Name: ${info.name}</p>`;
+                html_str += `<p>Dojo Location: ${info.dojo_location}</p>`;
+                html_str += `<p>Favorite Language: ${info.favorite_language}</p>`;
+                html_str += `<p>Comment: ${info.comment}</p>`;
+            });
+            // listener for the random_number that the server will emit
+            socket.on('random_number', function (data) {
+                html_str += `<p>Your lucky number emitted by the server is:</p>`;
+                html_str += `<p>${data.random_number}</p>`;
+                $("#details").html(html_str);
+                $("#details").css('display', 'block');
+            });
+        })
+    </script>
 </head>
 
 <body>
     <h1>Survey Form</h1>
-    <form action='/result' method='post'>
+    <div id="details"></div>
+    <form>
         <p>Your Name:<input type='text' name='name'>
         <p>Dojo Location:
             <select name="dojo_location" id="dojo_location">

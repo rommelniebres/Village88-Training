@@ -1,28 +1,27 @@
-// require express
-var express = require('express');
-// path module -- try to figure out where and why we use this
-var path = require('path');
-// create the express app
-var app = express();
-var bodyParser = require('body-parser');
-// use it!
-app.use(bodyParser.urlencoded({ extended: true }));
-// static content
+const express = require('express');
+const app = express();
+
+let path = require('path');
 app.use(express.static(path.join(__dirname, './static')));
-//set ejs in view folder
 app.set('views', path.join(__dirname, './views'));
 app.set('view engine', 'ejs');
 
-// survey form index page
 app.get('/', function (req, res) {
 	res.render('index');
 });
-// result page, send data to the view file result
-app.post('/result', function (req, res) {
-	console.log('POST DATA \n\n', req.body);
-	res.render('result', { data: req.body });
-});
-// tell the express app to listen on port 8000
-app.listen(8000, function () {
-	console.log('listening on port 8000');
+
+const server = app.listen(1337);
+console.log('Running in localhost at port 1337');
+
+// require socket io module
+const io = require('socket.io')(server);
+
+io.on('connection', function (socket) {
+	// set event listener for submitting a form from client
+	socket.on('posting_form', function (data) {
+		// emit data from form to the updated_message listener of the client
+		socket.emit('updated_message', { msg: data.data });
+		// emit data with a random number to the random_number listener of the client
+		socket.emit('random_number', { random_number: Math.floor(Math.random() * 1000) });
+	});
 });

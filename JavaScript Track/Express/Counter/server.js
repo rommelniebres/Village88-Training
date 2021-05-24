@@ -1,12 +1,12 @@
 // require express
-var express = require('express');
+let express = require('express');
 // require session
-var session = require('express-session');
+let session = require('express-session');
 // path module -- try to figure out where and why we use this
-var path = require('path');
+let path = require('path');
 // create the express app
-var app = express();
-var bodyParser = require('body-parser');
+let app = express();
+let bodyParser = require('body-parser');
 // use it!
 app.use(bodyParser.urlencoded({ extended: true }));
 // static content

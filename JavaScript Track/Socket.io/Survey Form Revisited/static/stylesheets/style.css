@@ -29,3 +29,12 @@ a {
 	padding: 10px;
 	text-decoration: none;
 }
+#details {
+	display: none;
+	padding: 20px;
+	margin: auto;
+	margin-bottom: 10px;
+	width: 300px;
+	background-color: dodgerblue;
+	border: 3px solid white;
+}

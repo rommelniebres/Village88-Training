@@ -1,0 +1,23 @@
+body {
+	text-align: center;
+	margin-top: 10%;
+}
+
+form {
+	display: inline-block;
+}
+
+#notify {
+	background-color: #4168e1;
+	border-radius: 8px;
+	color: white;
+	padding: 25px 30px;
+}
+#log {
+	margin: auto;
+	width: 500px;
+	height: 500px;
+	border: 2px solid black;
+	margin-top: 40px;
+	overflow: scroll;
+}

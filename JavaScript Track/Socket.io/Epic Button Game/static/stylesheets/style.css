@@ -1,0 +1,24 @@
+body {
+	text-align: center;
+	margin-top: 10%;
+}
+
+form {
+	display: inline-block;
+}
+
+#epic {
+	background-color: #085394;
+	border-radius: 8px;
+	color: white;
+	padding: 25px 30px;
+}
+#reset {
+	display: block;
+	margin: auto;
+	margin-top: 20px;
+	background-color: crimson;
+	border-radius: 4px;
+	color: white;
+	padding: 5px 10px;
+}

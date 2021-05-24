@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lobby</title>
+    <link rel="stylesheet" href="../stylesheets/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            let socket = io();
+            // listener for the updated_message that the server will emit
+            socket.on('new_user', function (data) {
+                $("#log").html(`<p>${data} joined the chat!</p>`);
+                $('#log').delay(5000).fadeOut('slow');
+                console.log(data);
+            });
+            $("#details").css('display', 'block');
+
+        })
+    </script>
+</head>
+
+<body>
+    <h2>Conversation Board</h2>
+    <div id="container">
+        <p>michael: hello</p>
+        <p>michael: hello</p>
+        <p>michael: hello</p>
+    </div>
+    <form action="/lobby" method="post">
+        <input type="text" name="message" placeholder="Enter your message here!">
+        <input type="hidden" name="current_user" id="current_user">
+        <input type="submit" value="Send">
+    </form>
+    <div id="log"></div>
+</body>
+
+</html>
