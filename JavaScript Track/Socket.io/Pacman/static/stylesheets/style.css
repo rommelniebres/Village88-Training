@@ -1,0 +1,107 @@
+body {
+	color: white;
+	background-color: #011f3c;
+	margin: 0px;
+}
+section {
+	vertical-align: top;
+	width: 49%;
+	display: inline-block;
+}
+div.row div {
+	width: 40px;
+	height: 40px;
+	border: 0px solid black;
+	display: inline-block;
+}
+div.brick {
+	background-color: #054685;
+}
+div.coin {
+	background: url('../images/coin.png');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 30% 30%;
+}
+div.cherry {
+	background: url('../images/cherry.gif');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+}
+div#pacman {
+	background: url('../images/pacman_right.gif');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+	width: 40px;
+	height: 40px;
+	position: absolute;
+}
+div#ghost {
+	background: url('../images/ghost.gif');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+	width: 40px;
+	height: 40px;
+	position: absolute;
+}
+div#score {
+	border: 1px solid white;
+	width: 40px;
+	height: 40px;
+	color: white;
+	padding: 7px;
+	font-size: 25px;
+	text-align: center;
+	position: absolute;
+	top: 50px;
+	left: 800px;
+}
+h2 {
+	margin: 5px 20px;
+	color: white;
+}
+#conversation {
+	width: 760px;
+	height: 200px;
+}
+#chat {
+	display: inline-block;
+	padding: 10px;
+	text-align: left;
+	border: 4px solid white;
+	margin: 0px 20px;
+	width: 350px;
+	height: 150px;
+	overflow: scroll;
+	overflow-wrap: break-word;
+}
+form {
+	vertical-align: top;
+	display: inline-block;
+	margin: 0px;
+}
+form textarea {
+	resize: none;
+	padding: 10px;
+	margin-top: 10px;
+}
+form input[type='submit'] {
+	display: block;
+	margin: auto;
+	margin-top: 10px;
+	background-color: dodgerblue;
+	color: white;
+	padding: 10px 14px;
+	border: 2px solid rgb(56, 56, 56);
+	border-radius: 4px;
+}
+.mini-view {
+	display: inline-block;
+	border: 3px solid white;
+	margin: 20px;
+	width: 400px;
+	height: 400px;
+}
