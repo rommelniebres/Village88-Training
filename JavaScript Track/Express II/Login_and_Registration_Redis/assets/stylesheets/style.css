@@ -1,0 +1,34 @@
+.mt-2 {
+	margin-top: 2rem;
+}
+
+.p-2 {
+	padding: 2rem !important;
+}
+
+.pl-2 {
+	padding-left: 2rem !important;
+}
+
+.forms {
+	display: flex;
+}
+
+.form-error,
+.message {
+	color: #fff;
+}
+
+.message {
+	font-weight: bold;
+}
+
+ul:not(.browser-default) > li {
+	list-style-type: disc !important;
+}
+p span {
+	font-weight: bold;
+}
+.details {
+	margin-left: 40%;
+}

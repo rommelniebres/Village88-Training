@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Sports Player Lookup</title>
+	<link rel="stylesheet" href="../stylesheets/style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('form').submit(function (e) {
+				e.preventDefault();
+				let form = $(this);
+				let url = form.attr('action');
+				$.ajax({
+					type: "POST",
+					url: url,
+					data: form.serialize(),
+					success: function (data) {
+						console.log(data);
+						$('#pictures').html(data);
+					}
+				});
+			});
+		});
+	</script>
+</head>
+
+<body>
+	<div id="container">
+		<nav id="search_user">
+			<form action="/search" method="post">
+				<h2>Search Player</h2>
+				<p><input type="text" placeholder="name" name="name"></p>
+				<p>Gender</p>
+				<input type="checkbox" name="gender[]" value="female"><label for="female">Female</label>
+				<input type="checkbox" name="gender[]" value="male"><label for="male">Male</label>
+				<p>Sports</p>
+				<input type="checkbox" name="sport[]" value="basketball"><label for="basketball">Basketball</label>
+				<input type="checkbox" name="sport[]" value="volleyball"><label for="volleyball">Volleyball</label>
+				<input type="checkbox" name="sport[]" value="baseball"><label for="baseball">Baseball</label>
+				<input type="checkbox" name="sport[]" value="soccer"><label for="soccer">Soccer</label>
+				<input type="checkbox" name="sport[]" value="football"><label for="football">Football</label>
+				<input type="submit" value="Search">
+			</form>
+		</nav>
+		<section id="pictures">
+			<% for(let i in players) { %>
+				<li>
+					<img src=<%=players[i].picture%> >
+					<p>
+						<%= players[i].name %>
+					</p>
+				</li>
+				<% } %>
+		</section>
+	</div>
+</body>
+
+</html>

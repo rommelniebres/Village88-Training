@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<link rel="stylesheet" href="../stylesheets/style.css">
+	<script>
+		$(document).ready(function () {
+			var selectElements = document.querySelectorAll("select");
+			M.FormSelect.init(selectElements);
+		});
+	</script>
+	<title>Login and Registration</title>
+</head>
+
+<body>
+	<nav class="light-red darken-4">
+		<div class="container">
+			<div class="nav-wrapper">
+				<a href="#" class="brand-logo">Login and Registration</a>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container mt-2">
+		<div class="row forms">
+			<form class="col s5 card p-2" action="/login_process" method="POST">
+				<div class="row">
+					<div class="col s12">
+						<h4>Login Form</h4>
+					</div>
+					<%if (form_errors && form_errors.type==="login" ) { %>
+						<div class="col s12 red form-error pl-2">
+							<h5>Please fix the errors:</h5>
+							<ul>
+								<% for (let error in form_errors.errors) { %>
+									<li>
+										<%= form_errors.errors[error]; %>
+									</li>
+									<% } %>
+							</ul>
+						</div>
+						<% } %>
+				</div>
+				<div class="row">
+					<div class="input-field col s12">
+						<input placeholder="" id="email" type="text" class="" name="email" />
+						<label for="email">Email</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="input-field col s12">
+						<input placeholder="" id="password" type="password" class="" name="password" />
+						<label for="password">password</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col s12">
+						<button class="btn waves-effect waves-light light-red darken-4" type="submit">
+							Login
+							<i class="material-icons right">arrow_forward</i>
+						</button>
+					</div>
+				</div>
+			</form>
+			<form class="col s5 card p-2" action="/create" method="POST">
+				<div class="row">
+					<div class="col s12">
+						<h4>Registration Form</h4>
+					</div>
+
+					<% if (message) { %>
+						<div class="col s12 <%= (message.title == 'success') ? 'teal' : 'red' %> message">
+							<p>
+								<%=message.content%>
+							</p>
+						</div>
+						<% } %>
+
+							<%if (form_errors && form_errors.type==="register" ) { %>
+								<div class="col s12 red form-error pl-2">
+									<h5>Please fix the errors:</h5>
+									<ul>
+										<% for (let error in form_errors.errors) { %>
+											<li>
+												<%= form_errors.errors[error]; %>
+											</li>
+											<% } %>
+									</ul>
+								</div>
+								<% } %>
+				</div>
+				<div class="row">
+					<div class="input-field col s12">
+						<input placeholder="" id="firstname" type="text" class="validate" name="firstname" />
+						<label for="firstname">Firstname</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="input-field col s12">
+						<input placeholder="" id="lastname" type="text" class="validate" name="lastname" />
+						<label for="lastname">Lastname</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="input-field col s12">
+						<input placeholder="" id="email" type="text" class="validate" name="email" />
+						<label for="email">Email</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="input-field col s12">
+						<input placeholder="" id="password" type="password" class="validate" name="password" />
+						<label for="password">password</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="input-field col s12">
+						<input placeholder="" id="confirm_password" type="password" class="validate"
+							name="confirm_password" />
+						<label for="confirm_password">Confirm Password</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col s12">
+						<button class="btn waves-effect waves-light light-red darken-4" type="submit">
+							Register
+							<i class="material-icons right">arrow_forward</i>
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>

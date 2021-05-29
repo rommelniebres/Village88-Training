@@ -23,6 +23,6 @@ app.post('/result', function (req, res) {
 	res.render('result', { data: req.body });
 });
 // tell the express app to listen on port 8000
-app.listen(8000, function () {
-	console.log('listening on port 8000');
+app.listen(8080, function () {
+	console.log('listening on port 8080');
 });
