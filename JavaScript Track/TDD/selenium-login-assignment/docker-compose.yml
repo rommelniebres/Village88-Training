@@ -17,7 +17,7 @@ services:
             MYSQL_ROOT_PASSWORD: password
             MYSQL_DATABASE: hh
         ports:
-            - 3308:3307
+            - 3308:3306
 
     web_app:
         depends_on:
