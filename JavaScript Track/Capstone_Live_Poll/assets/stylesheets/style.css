@@ -1,0 +1,20 @@
+.logo {
+	color: #ff2400;
+	padding: 5px;
+}
+.restart {
+	font-size: medium;
+}
+.trash {
+	color: black;
+	position: absolute;
+	top: 15%;
+	left: 97%;
+	padding: 5px;
+}
+.trash:hover {
+	cursor: pointer;
+}
+.progress-bar {
+	text-align: left;
+}

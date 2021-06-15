@@ -33,17 +33,15 @@ io.on('connection', function (socket) {
 			status: 'alive',
 			game: 'not-ready',
 		};
-		console.log(users);
+		users.push(player_info);
 		for (let i = 0; i < users.length; i++) {
 			if (users[i].id != socket.id) {
 				other_player.push = users[i];
 			}
 		}
-		users.push(player_info);
 		conversations.push({ name: `NEW`, message: `${name} joined the chat!` });
 		io.emit('chat_update', conversations);
-		console.log(other_player);
-		socket.broadcast.emit('mini_grid', other_player);
+		socket.emit('mini_grid', other_player);
 		socket.emit('current_user', player_info);
 	});
 

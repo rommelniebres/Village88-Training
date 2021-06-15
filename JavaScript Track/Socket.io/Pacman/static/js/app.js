@@ -31,6 +31,13 @@ $(document).ready(function () {
 			$('#chat').html('Empty chat :(');
 		}
 	});
+
+	socket.on('mini_grid', function (data) {
+		console.log(data);
+		for(let i = 1; i<= data.length; i++ ){
+			$(`#mini-view${i}`).htm("../../views/index.ejs"); 
+		}
+	});
 	let world = [
 		[2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
 		[2, 0, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 3, 2],

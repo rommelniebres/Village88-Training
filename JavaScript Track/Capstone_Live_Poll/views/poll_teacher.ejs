@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Poll | Teacher</title>
+    <link rel="stylesheet" href="../stylesheets/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="/js/poll_teacher.js"></script>
+</head>
+
+<body>
+    <div class="container py-4">
+        <header class="pb-3 mb-4 border-bottom">
+            <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+                <i class="fas fa-clouds logo"></i>
+                <span class="fs-4">Red Clouds</span>
+            </a>
+        </header>
+        <div class="p-5 mb-4 bg-light rounded-3" id="container">
+            <div class="input-group mb-3">
+                <input class="form-control" id="poll-url" type="text" placeholder="localhost:8000/<%=id%>" disabled>
+                <button class="btn btn-success" type="button" id="copy_url">Copy Poll URL</button>
+            </div>
+            <h4 for="exampleFormControlTextarea1" class="pb-1 mb-2 border-bottom">
+                Question
+                <button class="btn btn-link" id="restart_btn">
+                    <i class="far fa-sync-alt restart " data-bs-toggle="tooltip" data-bs-placement="right"
+                        id="restart_icon" title="Click to revert progress or start again">
+                    </i>
+                </button>
+            </h4>
+            <form method="post">
+                <textarea name='question' class="form-control mb-3 option" id="question" rows="3"
+                    placeholder="Type your question here ..."></textarea>
+                <div id="input-fields">
+                    <div class="input-group">
+                        <h5 class="mt-2 me-3 pe-1">1</h5>
+                        <input type="text" name="option_1" class="form-control mb-2 option" placeholder="Option 1">
+                        <i class="far fa-trash-alt trash"></i>
+                    </div>
+                    <div class="input-group">
+                        <h5 class="mt-2 me-3">2</h5>
+                        <input type="text" name="option_2" class="form-control mb-2 option" placeholder="Option 2">
+                        <i class="far fa-trash-alt trash"></i>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-link text-decoration-none mb-4" id="add_question">
+                    + Add an Option
+                </button>
+                <div id="percentage"></div>
+                <input type="submit" class="btn btn-primary px-5 d-block mx-auto" id="submit_btn"
+                    value="Start collecting responses(0 live)">
+            </form>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="endPollModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Poll Complete</h5>
+                </div>
+                <div class="modal-body border-bottom">
+                    Result has been sent to every participants of this poll
+                </div>
+                <div class="modal-footer mx-auto">
+                    <a href="/" class="btn btn-primary" id="reset">Start a new poll</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
