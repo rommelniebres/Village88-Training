@@ -1,0 +1,27 @@
+rails generate model Comment "commentable:references{polymorphic}"
+has_many :comments, as: :commentable #to user, post, blog, message model
+
+
+Blog comment create
+Comment.create(commentable_id: 1, commentable_type: "Blog", content:"HELLO")
+
+Post comment create
+Comment.create(commentable_id: 1, commentable_type: "Post", content:"HELLO1")
+
+Message comment create
+Comment.create(commentable_id: 1, commentable_type: "Message", content:"HELLO2")
+
+User comment create
+Comment.create(commentable_id: 1, commentable_type: "User", content:"HELLO3")
+
+#Retrieve comments
+User.first.comments
+
+#Update comments
+User.first.comments.update(content: "updated_comment")
+
+#Delete comments
+User.first.comments.first.destroy
+#OR all
+User.first.comments.destroy_all
+
