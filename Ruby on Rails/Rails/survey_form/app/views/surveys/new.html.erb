@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Form</title>
+    <style>
+        #container {
+            padding: 20px;
+            width: 500px;
+            margin: auto;
+            border: 2px solid black;
+            font-size: 14px;
+        }
+
+        form {
+            margin-left: 100px;
+        }
+
+        label {
+            margin: 5px 0px;
+        }
+
+        select,
+        input {
+            padding: 5px;
+        }
+
+        .submit {
+            margin: 20px;
+            display: block;
+            padding: 5px 10px;
+            background-color: dodgerblue;
+            color: white;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <form action="/surveys/" method="post">
+            <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token %>">
+            <label for="name">Your Name: </label>
+            <input type='text' name='survey[name]' id="name">
+
+            <label for="dojo_location">Dojo Location:</label>
+            <select name="survey[dojo_location]" id="dojo_location">
+                <option value="mountain_view">Mountain View</option>
+                <option value="seattle_wa">Seattle, WA</option>
+                <option value="launion_philippines">La Union, Philippines</option>
+            </select>
+
+            <label for="favorite_language">Favorite Language: </label>
+            <select name="survey[favorite_language]" id="favorite_language">
+                <option value="javascript">JavaScript</option>
+                <option value="node">Node</option>
+                <option value="python">Python</option>
+                <option value="php">PHP</option>
+            </select>
+
+            <label for="comment">Comment(optional):</label>
+            <textarea name="survey[comment]" placeholder="Comment"></textarea>
+            <input type='submit' value='Submit' class="submit">
+        </form>
+        <%= link_to 'Back' , surveys_path %>
+    </div>
+</body>
+
+</html>
+
+<%= @survey.name %>

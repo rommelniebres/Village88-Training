@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ninja Gold Game (CodeIgniter Version)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            text-align: center;
+        }
+
+        h1 {
+            margin: 20px 20px 20px 5%;
+        }
+
+        form:not(#reset) {
+            border: 2px solid black;
+            display: inline-block;
+            height: 150px;
+            margin-right: 20px;
+            padding: 10px;
+            text-align: center;
+            vertical-align: top;
+            width: 170px;
+        }
+
+        form h2 {
+            margin-bottom: 10px;
+        }
+
+        form input {
+            margin-top: 20px;
+            padding: 10px;
+            font-weight: bold;
+            background-color: white;
+            box-shadow: 2px 2px #2c2a2a;
+        }
+
+        .activities {
+            border: 2px solid black;
+            display: block;
+            font-size: 20px;
+            height: 200px;
+            margin: 20px auto;
+            overflow: scroll;
+            padding: 40px;
+            text-align: left;
+            width: 800px;
+        }
+
+        .good {
+            color: green;
+        }
+
+        .bad {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Your Gold:
+        <%= session[:gold] %>
+    </h1>
+    <form action="/farm" method="post">
+        <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token %>">
+        <h2>Farm</h2>
+        <p>(earns 10-20 golds)</p>
+        <input type="submit" value="Find Gold!" />
+    </form>
+    <form action="/cave" method="post">
+        <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token %>">
+        <h2>Cave</h2>
+        <p>(earns 5-10 golds)</p>
+        <input type="submit" value="Find Gold!" />
+    </form>
+    <form action="/house" method="post">
+        <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token %>">
+        <h2>House</h2>
+        <p>(earns 2-5 golds)</p>
+        <input type="submit" value="Find Gold!" />
+    </form>
+    <form action="/casino" method="post">
+        <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token %>">
+        <h2>Casino</h2>
+        <p>(earns/takes 0-50 golds)</p>
+        <input type="submit" value="Find Gold!" />
+    </form>
+    <div contenteditable="true" readonly class="activities" id="text_bottom">
+        <% session[:log].each do |log| %>
+            <% if log.include? "Loss" %>
+                <p style="color:red">
+                    <%= log %>
+                </p>
+                <% else %>
+                    <p style="color:green">
+                        <%= log %>
+                    </p>
+                    <% end %>
+                        <% end %>
+    </div>
+    <form id="reset" action="/reset" method="post">
+        <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token %>">
+        <input type="submit" value="Reset">
+    </form>
+
+</body>
+<script>
+    var textarea = document.getElementById('text_bottom');
+    textarea.scrollTop = textarea.scrollHeight;
+</script>
+
+</html>

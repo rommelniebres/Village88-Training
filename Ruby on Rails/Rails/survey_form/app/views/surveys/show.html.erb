@@ -1,0 +1,30 @@
+<p id="notice">
+  <%= notice %>
+</p>
+<p>
+  Thanks for submitting this form!. You have submitted this form <strong>
+    <%= flash[:counter] %>
+  </strong> times now.
+</p>
+<p>
+  <strong>Name:</strong>
+  <%= @survey.name %>
+</p>
+
+<p>
+  <strong>Dojo location:</strong>
+  <%= @survey.dojo_location %>
+</p>
+
+<p>
+  <strong>Favorite language:</strong>
+  <%= @survey.favorite_language %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @survey.comment %>
+</p>
+
+<%= link_to 'Edit' , edit_survey_path(@survey) %> |
+  <%= link_to 'Back' , surveys_path %>

@@ -1,0 +1,16 @@
+<h1>
+    User #<%= @user.id %>
+</h1>
+<table>
+    <tbody>
+        <tr>
+            ID: <%= @user.id %>
+        </tr>
+        <td>
+            Name: <input type="text" value="<%= @user.name %>" name="name">
+        </td>
+        <td>
+            created_date: <%= @user.created_at %>
+        </td>
+    </tbody>
+</table>
