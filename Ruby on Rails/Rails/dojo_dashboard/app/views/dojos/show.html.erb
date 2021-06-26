@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        #students {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #students td,
+        #students th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #students tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #students tr:hover {
+            background-color: #ddd;
+        }
+
+        #students th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #04AA6D;
+            color: white;
+        }
+
+        #edit_dojo,
+        h1 {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        input[type=submit] {
+            background: none !important;
+            border: none;
+            padding: 0 !important;
+            font-size: 16px;
+            color: red;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>
+        Dojo: <%= @dojo.branch %>
+    </h1>
+    <a href="/dojos/<%= @dojo.id %>/edit" id="edit_dojo">Edit</a>
+    <p>
+        Street: <%= @dojo.street %>
+    </p>
+    <p>
+        City: <%= @dojo.city %>
+    </p>
+    <p>
+        State: <%= @dojo.state %>
+    </p>
+
+    <h2>Student Lists: </h2>
+    <div>
+        <table id="students">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th colspan="3">Action</th>
+            </tr>
+            <% @students.each do |student| %>
+                <tr>
+                    <td>
+                        <%= student.first_name %>
+                    </td>
+                    <td>
+                        <%= student.last_name %>
+                    </td>
+                    <td>
+                        <%= student.email %>
+                    </td>
+                    <td>
+                        <a href="/dojos/<%= @dojo.id %>/students/<%= student.id %>">Show</a>
+                    </td>
+                    <td>
+                        <a href="/dojos/<%= @dojo.id %>/students/<%= student.id %>/edit">Edit</a>
+                    </td>
+                    <td>
+                        <form action="/dojos/<%= @dojo.id %>/students/<%= student.id %>" method="post">
+                            <input type="hidden" name="_method" value="delete">
+                            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                            <input type="submit" value="Delete">
+                        </form>
+                    </td>
+                </tr>
+                <% end %>
+        </table>
+        <div>
+            <a href="/">Home</a>
+            <a href="/dojos/<%= @dojo.id %>/students/new">Add Student</a>
+        </div>
+    </div>
+    <% flash.each do |type, msg| %>
+        <div>
+            <%= msg %>
+        </div>
+        <% end %>
+
+</body>
+
+</html>

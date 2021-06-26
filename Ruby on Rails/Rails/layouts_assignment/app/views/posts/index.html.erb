@@ -1,0 +1,52 @@
+<% content_for :left_column do %>
+    <h1>All Posts</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Content</th>
+                <th scope="col">Author</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @posts.each do |post| %>
+                <tr>
+                    <td>
+                        <%= post.title %>
+                    </td>
+                    <td>
+                        <%= post.content %>
+                    </td>
+                    <td>
+                        <%= post.user_id %>
+                    </td>
+                </tr>
+                <% end %>
+        </tbody>
+    </table>
+    <% end %>
+        <% content_for :middle_column do %>
+            <h1>New Post</h1>
+            <form>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Title: </label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Content: </label>
+                    <input type="text" class="form-control" id="exampleInputPassword1">
+                </div>
+                <select class="form-select mb-3" aria-label="Default select example">
+                    <option value="1">John Doe</option>
+                    <option value="2">Jane Doe</option>
+                    <option value="3">Three</option>
+                </select>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            <% end %>
+                <% content_for :right_column do %>
+                    <h1>Go to Users Page</h1>
+                    <a href="/users" class="btn btn-secondary ">
+                        All Users
+                    </a>
+                    <% end %>

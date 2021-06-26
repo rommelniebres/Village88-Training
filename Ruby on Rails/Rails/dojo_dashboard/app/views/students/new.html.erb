@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<style>
+    input[type=text],
+    select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    input[type=submit] {
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    input[type=submit]:hover {
+        background-color: #45a049;
+    }
+
+    div {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+    }
+
+    #errors {
+        color: red;
+    }
+</style>
+
+<body>
+
+    <h3>New Student</h3>
+
+    <div>
+        <form action="/dojos/<%= @dojo.id %>/students" method="post">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+            <label for="first_name">First Name: </label>
+            <input type="text" id="first_name" name="first_name" placeholder="First Name..">
+
+            <label for="last_name">Last Name: </label>
+            <input type="text" id="last_name" name="last_name" placeholder="Last Name..">
+
+            <label for="email">Email: </label>
+            <input type="text" id="email" name="email" placeholder="Email..">
+
+            <label for="dojo_selected">Dojo: </label>
+            <select id="dojo_selected" name="dojo_selected" disabled>
+                <option name="dojo" value="<%= @dojo.id %>">
+                    <%= @dojo.branch %>
+                </option>
+            </select>
+            <input type="submit" value="Create">
+        </form>
+        <div>
+            <a href="/">Home</a>
+            <span> | </span>
+            <a href="/dojos/<%= @dojo.id %>">
+                <%= @dojo.branch %>
+            </a>
+        </div>
+    </div>
+    <% flash.each do |type, msg| %>
+        <div id="errors">
+            <%= msg %>
+        </div>
+        <% end %>
+</body>
+
+</html>

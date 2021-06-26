@@ -1,0 +1,9 @@
+rails-footer gem
+active record other commands
+Callbacks other commands
+Migration other commands
+Polymorphism
+routes helpers
+scaffolding
+form/hash/security
+ 
