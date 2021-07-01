@@ -1,0 +1,8 @@
+<h1>Sign In</h1>
+<% if flash[:notice] %>
+    <% flash[:notice].each do |note| %>
+        <p id="notice">
+            <%= note %>
+        </p>
+        <% end %>
+            <% end %>

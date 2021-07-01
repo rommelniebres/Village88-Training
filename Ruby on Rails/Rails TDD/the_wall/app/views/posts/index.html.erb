@@ -1,0 +1,28 @@
+<h1>Post a Message</h1>
+<% if flash[:notice] %>
+    <% flash[:notice].each do |note| %>
+        <p id="notice">
+            <%= note %>
+        </p>
+        <% end %>
+            <% end %>
+                <% if @posts %>
+                    <% @posts.each do |post| %>
+                        <p class="post">
+                            <%= post.message %>
+                        </p>
+                        <% end %>
+                            <% end %>
+                                <form action="/posts" method="post">
+                                    <input type='hidden' name="authenticity_token" value="<%=form_authenticity_token%>">
+                                    <label>Post a Message</label>
+                                    <textarea name="message"></textarea>
+                                    <input type="text" name="user">
+                                    <input type="submit" value="Post a Message">
+                                </form>
+
+                                <form action="/posts" method="post">
+                                    <input type='hidden' name="authenticity_token" value="<%=form_authenticity_token%>">
+                                    <input type="hidden" name="_method" value="patch">
+                                    <input type="submit" value="Logout">
+                                </form>
