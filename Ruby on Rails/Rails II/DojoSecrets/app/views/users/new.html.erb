@@ -1,0 +1,13 @@
+<form action="/users" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="text" name="Name">
+    <input type="email" name="Email">
+    <input type="password" name="Password">
+    <input type="password" name="Password_Confirmation">
+    <input type="submit" value="Join">
+</form>
+<% if flash[:errors] %>
+    <% flash[:errors].each do |e| %>
+        <%= e %>
+            <% end %>
+                <% end %>

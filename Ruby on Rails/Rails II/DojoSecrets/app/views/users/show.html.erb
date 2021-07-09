@@ -1,0 +1,29 @@
+<h1>
+    <%= session[:name] %>
+</h1>
+<a href="#">Edit Profile</a>
+
+<form action="/secrets/<%= @user.id %>" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="text" name="Content">
+    <input type="submit" value="Create Secret">
+</form>
+<% if @secrets %>
+    <% @secrets.each do |s| %>
+        <p>
+            <%= s.content %>
+        </p>
+        <form action="/secrets/delete/<%= @user.id %>" method="post">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <input type="hidden" name="secret_id" value="<%= s.id %>">
+            <input type="submit" value="Delete Secret">
+
+        </form>
+        <% end %>
+            <% end %>
+
+                <% if flash[:errors] %>
+                    <% flash[:errors].each do |e| %>
+                        <%= e %>
+                            <% end %>
+                                <% end %>
